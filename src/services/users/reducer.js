@@ -1,6 +1,6 @@
 import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING } from './actionTypes'
 
-function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated: true }, action) {
+function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated: false }, action) {
     switch (action.type) {
         case TOGGLE_MENU:
             return {

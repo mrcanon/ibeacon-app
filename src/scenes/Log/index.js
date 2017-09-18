@@ -47,36 +47,42 @@ class Log extends React.Component {
 
     componentWillMount() {
         const { toggleLoading, user } = { ...this.props }
-        if (user.isAuthenticated) {
-            toggleLoading(user.isLoading)
-        } else {
-            this.props.history.push('/login')
-        }
+        toggleLoading(user.isLoading)
     }
 
     componentDidMount() {
         const { user } = { ...this.props }
-        if (user.isAuthenticated) {
-            axios.get("http://59bd2f925037eb00117b4b2c.mockapi.io/log")
-                .then((res) => {
-                    this.setState({
-                        logTime: res.data
-                    })
+        axios.get("http://59bd2f925037eb00117b4b2c.mockapi.io/log")
+            .then((res) => {
+                this.setState({
+                    logTime: res.data
+                })
 
-                    this.carousel()
-                })
-                .then(() => {
-                    const { toggleLoading, user } = { ...this.props }
-                    toggleLoading(user.isLoading)
-                })
-        } else {
-            this.props.history.push('/login')
-        }
+                this.carousel()
+            })
+            .then(() => {
+                const { toggleLoading, user } = { ...this.props }
+                toggleLoading(user.isLoading)
+            })
     }
 
     render() {
         const { t, toggleMenu, user } = { ...this.props }
         const { logTime } = { ...this.state }
+
+        const PrivateRoute = ({ component: Component, ...rest }) => (
+            <Route {...rest} render={props => (
+                fakeAuth.isAuthenticated ? (
+                    <Component {...props} />
+                ) : (
+                        <Redirect to={{
+                            pathname: '/login',
+                            state: { from: props.location }
+                        }} />
+                    )
+            )} />
+        )
+
 
         return (
             <div className={classnames('wrapper page-history', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
