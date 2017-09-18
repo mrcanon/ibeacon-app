@@ -31,7 +31,7 @@ class Home extends React.Component {
                         </Link>
                     </div>
                     <div className="home-content">
-                        <Link to="/" className="home-item">
+                        <Link to="/guide" className="home-item">
                             <div className="home-media">
                                 <img src={srcGuide} alt={t('common:auto_guide')} width="64" height="64" />
                             </div>

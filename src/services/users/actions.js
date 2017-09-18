@@ -1,4 +1,4 @@
-import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE } from './actionTypes'
+import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING } from './actionTypes'
 let timer = null
 export function toggleMenu(status) {
   return {
@@ -11,6 +11,13 @@ export function changeLng(lng) {
   return {
     type: CHANGE_LANGUAGE,
     lng
+  }
+}
+
+export function toggleLoading(status) {
+  return {
+    type: TOGGLE_LOADING,
+    status
   }
 }
 

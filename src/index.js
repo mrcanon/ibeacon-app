@@ -15,6 +15,7 @@ import Home from './scenes/Home'
 import Setting from './scenes/Setting'
 import Log from './scenes/Log'
 import About from './scenes/About'
+import Guide from './scenes/Guide'
 
 const store = configStore()
 
@@ -28,6 +29,7 @@ ReactDOM.render(
                     <Route path="/setting" component={Setting} />
                     <Route path="/log" component={Log} />
                     <Route path="/about" component={About} />
+                    <Route path="/guide" component={Guide} />
                 </Switch>
             </Router>
         </Provider>

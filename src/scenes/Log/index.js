@@ -5,8 +5,11 @@ import Overlay from '../../components/Overlay'
 import { translate, Interpolate, Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import i18n from '../../services/language/i18n'
-import { toggleMenu, changeLng } from '../../services/users/actions.js'
+import { toggleMenu, toggleLoading } from '../../services/users/actions.js'
 import classnames from 'classnames'
+import axios from 'axios'
+import LogItem from './components/LogItem'
+import LogHeader from './components/LogHeader'
 
 import 'slick-carousel';
 import 'slick-carousel/slick/slick.css'
@@ -18,10 +21,16 @@ import srcHistory from '../../boilerplate/assets/img/icons/64x64/history.svg'
 @translate(['log', 'home'], { wait: true })
 
 class Log extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            logTime: []
+        }
+    }
 
     carousel() {
         const $carousel = $('#history-checkin')
-        if($carousel.length > 0) {
+        if ($carousel.length > 0) {
             $carousel.slick({
                 dots: false,
                 infinite: true,
@@ -35,130 +44,54 @@ class Log extends React.Component {
         }
     }
 
+    componentWillMount() {
+        const { toggleLoading, user } = { ...this.props }
+        toggleLoading(user.isLoading)
+    }
+
     componentDidMount() {
-        this.carousel()
+        axios.get("http://59bd2f925037eb00117b4b2c.mockapi.io/log")
+            .then((res) => {
+                this.setState({
+                    logTime: res.data
+                })
+
+                this.carousel()
+            })
+            .then(() => {
+                const { toggleLoading, user } = { ...this.props }
+                toggleLoading(user.isLoading)
+            })
     }
 
     render() {
         const { t, toggleMenu, user } = { ...this.props }
+        const { logTime } = { ...this.state }
+
         return (
-            <div className={classnames('wrapper page-history', { 'is-show': user.isMenu })}>
+            <div className={classnames('wrapper page-history', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
                 <Header toggleMenu={toggleMenu} isMenu={user.isMenu} srcHome={srcHome} srcMenu={srcMenu} />
                 <div className="container">
                     <div className="history-page section-page">
-                        <div className="history-logo"><img src={srcHistory} width="64" height="64" alt={t('common:history')}/></div>
+                        <div className="history-logo"><img src={srcHistory} width="64" height="64" alt={t('common:history')} /></div>
                         <h2 className="history-title">{t('common:history')}</h2>
                         <p className="history-desc">{t('home:history_desc')}</p>
                         <div className="history-container">
                             <div className="history-checkin" id="history-checkin">
-                                <div className="history-list">
-                                    <div className="history-header">
-                                        <div className="history-day">Today</div>
-                                        <div className="history-date">07/09/2017 </div>
-                                    </div>
-                                    <ul className="history-content">
-                                        <li>
-                                            <div className="item-time">08:30</div>
-                                            <div className="item-name">Codeshore</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">09:00</div>
-                                            <div className="item-name">SS-Global</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">09:45</div>
-                                            <div className="item-name">BackOffice</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">11:29</div>
-                                            <div className="item-name">Metting room</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">11:58</div>
-                                            <div className="item-name">Codeshore</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">12:40</div>
-                                            <div className="item-name">Divison 1                        </div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">16:33</div>
-                                            <div className="item-name">SS-Global  </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="history-list">
-                                    <div className="history-header">
-                                        <div className="history-day">Yesterday</div>
-                                        <div className="history-date">07/09/2017</div>
-                                    </div>
-                                    <ul className="history-content">
-                                        <li>
-                                            <div className="item-time">08:30</div>
-                                            <div className="item-name">Codeshore</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">09:00</div>
-                                            <div className="item-name">SS-Global</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">09:45</div>
-                                            <div className="item-name">BackOffice</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">11:29</div>
-                                            <div className="item-name">Metting room</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">11:58</div>
-                                            <div className="item-name">Codeshore</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">12:40</div>
-                                            <div className="item-name">Divison 1 </div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">16:33</div>
-                                            <div className="item-name">SS-Global  </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="history-list">
-                                    <div className="history-header">
-                                        <div className="history-day">Friday</div>
-                                        <div className="history-date">07/09/2017</div>
-                                    </div>
-                                    <ul className="history-content">
-                                        <li>
-                                            <div className="item-time">08:30</div>
-                                            <div className="item-name">Codeshore</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">09:00</div>
-                                            <div className="item-name">SS-Global</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">09:45</div>
-                                            <div className="item-name">BackOffice</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">11:29</div>
-                                            <div className="item-name">Metting room</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">11:58</div>
-                                            <div className="item-name">Codeshore</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">12:40</div>
-                                            <div className="item-name">Divison 1</div>
-                                        </li>
-                                        <li>
-                                            <div className="item-time">16:33</div>
-                                            <div className="item-name">SS-Global</div>
-                                        </li>
-                                    </ul>
-                                </div>
+                                {
+                                    logTime.map((val) =>
+                                        <div className="history-list" key={val.id}>
+                                            <LogHeader date={val.day} time={val.date} />
+                                            <ul className="history-content">
+                                                {
+                                                    val.logTime.map((value) =>
+                                                        <LogItem time={value.time} location={value.location} key={val.id + value.time} />
+                                                    )
+                                                }
+                                            </ul>
+                                        </div>
+                                    )
+                                }
                             </div>
                         </div>
                     </div>
@@ -180,6 +113,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         toggleMenu: status => {
             dispatch(toggleMenu(status))
+        },
+        toggleLoading: status => {
+            dispatch(toggleLoading(status))
         }
     }
 }

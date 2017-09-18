@@ -23,3 +23,17 @@
 .page-bg-white{
   background: $color-white;
 }
+
+.is-loading{
+  &:before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgba(#8EDFA9, 0.8);
+    background-image: url('../img/spinner-loading.svg');
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    z-index: 100;
+    position: absolute;
+  }
+}
