@@ -10,7 +10,7 @@ import classnames from 'classnames'
 import axios from 'axios'
 import LogItem from './components/LogItem'
 import LogHeader from './components/LogHeader'
-import { Redirect, withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 import 'slick-carousel';
 import 'slick-carousel/slick/slick.css'
@@ -67,56 +67,48 @@ class Log extends React.Component {
     }
 
     render() {
-        const { t, toggleMenu, user } = { ...this.props }
+        const { t, toggleMenu, user, location } = { ...this.props }
         const { logTime } = { ...this.state }
+        if (user.isAuthenticated) {
+            return (
+                <div className={classnames('wrapper page-history', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
 
-        const PrivateRoute = ({ component: Component, ...rest }) => (
-            <Route {...rest} render={props => (
-                fakeAuth.isAuthenticated ? (
-                    <Component {...props} />
-                ) : (
-                        <Redirect to={{
-                            pathname: '/login',
-                            state: { from: props.location }
-                        }} />
-                    )
-            )} />
-        )
-
-
-        return (
-            <div className={classnames('wrapper page-history', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
-
-                <Header toggleMenu={toggleMenu} isMenu={user.isMenu} srcHome={srcHome} srcMenu={srcMenu} />
-                <div className="container">
-                    <div className="history-page section-page">
-                        <div className="history-logo"><img src={srcHistory} width="64" height="64" alt={t('common:history')} /></div>
-                        <h2 className="history-title">{t('common:history')}</h2>
-                        <p className="history-desc">{t('home:history_desc')}</p>
-                        <div className="history-container">
-                            <div className="history-checkin" id="history-checkin">
-                                {
-                                    logTime.map((val) =>
-                                        <div className="history-list" key={val.id}>
-                                            <LogHeader date={val.day} time={val.date} />
-                                            <ul className="history-content">
-                                                {
-                                                    val.logTime.map((value) =>
-                                                        <LogItem time={value.time} location={value.location} key={val.id + value.time} />
-                                                    )
-                                                }
-                                            </ul>
-                                        </div>
-                                    )
-                                }
+                    <Header toggleMenu={toggleMenu} isMenu={user.isMenu} srcHome={srcHome} srcMenu={srcMenu} />
+                    <div className="container">
+                        <div className="history-page section-page">
+                            <div className="history-logo"><img src={srcHistory} width="64" height="64" alt={t('common:history')} /></div>
+                            <h2 className="history-title">{t('common:history')}</h2>
+                            <p className="history-desc">{t('home:history_desc')}</p>
+                            <div className="history-container">
+                                <div className="history-checkin" id="history-checkin">
+                                    {
+                                        logTime.map((val) =>
+                                            <div className="history-list" key={val.id}>
+                                                <LogHeader date={val.day} time={val.date} />
+                                                <ul className="history-content">
+                                                    {
+                                                        val.logTime.map((value) =>
+                                                            <LogItem time={value.time} location={value.location} key={val.id + value.time} />
+                                                        )
+                                                    }
+                                                </ul>
+                                            </div>
+                                        )
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <Overlay toggleMenu={toggleMenu} isMenu={user.isMenu} />
+                    <Navigation t={t} />
                 </div>
-                <Overlay toggleMenu={toggleMenu} isMenu={user.isMenu} />
-                <Navigation t={t} />
-            </div>
-        )
+            )
+        } else {
+            return (
+                <Redirect to='/login' from={location} />
+            )
+        }
+
     }
 }
 

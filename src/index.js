@@ -10,7 +10,6 @@ import i18n from './services/language/i18n'
 
 import './boilerplate/assets/scss/style.scss'
 
-import PrivateRoute from './components/PrivateRoute'
 import Wellcome from './scenes/Wellcome'
 import Home from './scenes/Home'
 import Setting from './scenes/Setting'
@@ -32,7 +31,7 @@ ReactDOM.render(
                     <Route path="/about" component={About} />
                     <Route path="/guide" component={Guide} />
                     <Route path="/login" component={Login} />
-                    <PrivateRoute authed={store.getState().user.isAuthenticated} path='/log' component={Log} />
+                    <Route path="/log" component={Log} />
                 </Switch>
             </Router>
         </Provider>
