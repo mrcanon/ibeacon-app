@@ -1,0 +1,32 @@
+mixin head(title, description, keywords, description_social, image_social, url_social, type_social)
+  title #{title}
+  meta(name="description", content="#{description}")
+  meta(name="keywords", content="#{keywords}")
+  meta(property="og:title" content="#{title}")
+  if typeof(description_social) !== 'undefined' && description_social != ""
+    meta(property="og:description" content="#{description_social}")
+  if typeof(image_social) !== 'undefined' && image_social != ""
+    meta(property="og:image" content="#{image_social}")
+  if typeof(url_social) !== 'undefined' && url_social != ""
+    meta(property="og:url" content="#{url_social}")
+  if typeof(type_social) !== 'undefined' && type_social != ""
+    meta(property="og:type" content="#{type_social}")
+  else
+    meta(property="og:type" content="website")
+
+mixin menu(link, title, current)
+  if current != ""
+    li(class="#{current}")
+      a(href="#{link}", title="#{title}") !{title}
+  else
+    li
+      a(href="#{link}", title="#{title}") !{title}
+
+mixin header(menu, home) 
+  header.header
+    .container
+        a.header-menu(href="#")
+          img(src="assets/img/icons/24x24/#{menu}", alt="", width='24px', height='24px')
+        a.header-home(href="#")
+          img(src="assets/img/icons/24x24/#{home}", alt="", width='24px', height='24px')
+    

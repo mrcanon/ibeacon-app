@@ -1,0 +1,124 @@
+// =====================================================================================================================
+// ! General Resets
+// =====================================================================================================================
+.no-margin { margin: 0; }
+.no-padding { padding: 0; }
+.no-float { float: none; }
+.no-background { background: transparent; }
+.no-border { border: 0; }
+
+.no-select {
+  cursor: default;
+  user-select: none;
+}
+
+// =====================================================================================================================
+// ! Fonts & Text Align
+// =====================================================================================================================
+.font-100 { font-weight: 100; }
+.font-200 { font-weight: 200; }
+.font-300 { font-weight: 300; }
+.font-400 { font-weight: 400; }
+.font-500 { font-weight: 500; }
+.font-600 { font-weight: 600; }
+.font-700 { font-weight: 700; }
+.font-800 { font-weight: 800; }
+.font-900 { font-weight: 900; }
+.font-normal { font-style: normal; }
+.font-italic { font-style: italic; }
+
+// Text Modifications
+.uppercase { text-transform: uppercase; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+
+// Text Alignments
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.text-justify { text-align: justify; }
+.text-top { vertical-align: top; }
+.text-middle { vertical-align: middle; }
+.text-bottom { vertical-align: bottom; }
+
+// =====================================================================================================================
+// ! Positions
+// =====================================================================================================================
+.relative { position: relative; }
+.absolute { position: absolute; }
+.static { position: static; }
+.fixed { position: fixed; }
+
+// Display Types
+.none { display: none; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+.inline { display: inline; }
+
+// Floats
+.left { float: left; }
+.right { float: right; }
+
+// Alignment
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// =====================================================================================================================
+// ! Padding Helpers
+// =====================================================================================================================
+.pad-top-5 { padding-top: 5px; }
+.pad-top-10 { padding-top: 10px; }
+.pad-top-15 { padding-top: 15px; }
+.pad-top-20 { padding-top: 20px; }
+.pad-top-25 { padding-top: 25px; }
+.pad-top-30 { padding-top: 30px; }
+.pad-top-35 { padding-top: 35px; }
+.pad-top-40 { padding-top: 40px; }
+.pad-top-45 { padding-top: 45px; }
+.pad-top-50 { padding-top: 50px; }
+.pad-top-55 { padding-top: 55px; }
+.pad-top-60 { padding-top: 60px; }
+.pad-bottom-5 { padding-bottom: 5px; }
+.pad-bottom-10 { padding-bottom: 10px; }
+.pad-bottom-15 { padding-bottom: 15px; }
+.pad-bottom-20 { padding-bottom: 20px; }
+.pad-bottom-25 { padding-bottom: 25px; }
+.pad-bottom-30 { padding-bottom: 30px; }
+.pad-bottom-35 { padding-bottom: 35px; }
+.pad-bottom-40 { padding-bottom: 40px; }
+.pad-bottom-45 { padding-bottom: 45px; }
+.pad-bottom-50 { padding-bottom: 50px; }
+.pad-bottom-55 { padding-bottom: 55px; }
+.pad-bottom-60 { padding-bottom: 60px; }
+.pad-5 { padding: 5px; }
+.pad-10 { padding: 10px; }
+.pad-15 { padding: 15px; }
+.pad-20 { padding: 20px; }
+.pad-25 { padding: 25px; }
+.pad-30 { padding: 30px; }
+.pad-35 { padding: 35px; }
+.pad-40 { padding: 40px; }
+.pad-45 { padding: 45px; }
+.pad-50 { padding: 50px; }
+.pad-55 { padding: 55px; }
+.pad-60 { padding: 60px; }
+.pad-right-0 { padding-right: 0; }
+.pad-left-0 { padding-left: 0; }
+
+// =====================================================================================================================
+// ! Table
+// =====================================================================================================================
+.table {
+  display: table;
+}
+
+.table-row {
+  display: table-row;
+}
+
+.table-cell {
+  display: table-cell;
+}

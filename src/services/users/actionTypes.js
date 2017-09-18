@@ -1,0 +1,3 @@
+export const TOGGLE_MENU = 'TOGGLE_MENU'
+export const CHANGE_LANGUAGE = 'CHANGE_LANGUAGE'
+export const HIDE_MENU = 'HIDE_MENU'

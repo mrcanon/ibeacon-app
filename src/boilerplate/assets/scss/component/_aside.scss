@@ -1,0 +1,76 @@
+
+
+.splitter {
+    background-color: $color-white;
+    min-height: 100vh;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    transform: translate3d(0, 0, 0);
+    transition: transform .5s;
+    position: fixed;
+    z-index: 100;
+  
+    .is-show & {
+      transform: translate3d(260px, 0, 0);
+    }
+  }
+  
+  .splitter-profile {
+    @include bg-grardient-2;
+    padding: 35px 15px 15px;
+  }
+
+  .splitter-media {
+    width: percentage(80/260);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    border: 2px solid $color-white;
+    margin-bottom: 10px;
+    background-image: url(../img/profile.jpg);
+
+      &::before {
+          content: '';
+          display: block;
+          padding-top: 100%;
+      }
+    }
+
+  .splitter-name {
+    font-size: $base-h4-font-size;
+    text-transform: capitalize;
+    font-family: $font-lato-black;
+    color: $color-white;
+  }
+  
+.splitter-menu {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+
+  li {
+    
+    &:not(:first-child) {
+      border-top: 1px solid $color-five;
+    }
+  }
+
+  img {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      margin-top: -12px;
+  }
+
+  a {
+      display: block;
+      line-height: 58px;
+      font-family: $font-lato-bold;
+      position: relative;
+      padding-left: 65px;
+      padding-right: 20px;
+      text-decoration: none;
+  }
+}

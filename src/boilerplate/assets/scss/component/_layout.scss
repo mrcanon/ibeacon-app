@@ -1,0 +1,25 @@
+// =====================================================================================================================
+// ! Layout common
+// =====================================================================================================================
+
+.wrapper {
+  overflow: hidden;
+}
+
+.overlay {
+  @include coverer;
+  visibility: hidden;
+  opacity: 0;
+  background: rgba($color-black, .5);
+  transition: opacity .5;
+  z-index: 90;
+
+  .is-show &{
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.page-bg-white{
+  background: $color-white;
+}

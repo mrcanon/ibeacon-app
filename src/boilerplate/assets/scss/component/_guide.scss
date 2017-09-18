@@ -1,0 +1,70 @@
+.guide-page {
+    margin: 0 -15px;
+    padding: 0 15px;
+    text-align: center;
+
+    .guide-title {
+        font-size: $base-h2-font-size;
+        font-family: $font-lato-black;
+        text-transform: uppercase;
+        color: $color-seven;
+        margin: 10px 0 5px;
+    }
+
+    .guide-desc {
+        font-size: $base-h6-font-size;
+    }
+}
+
+.guide-container {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-top: 15px;
+    -webkit-box-shadow: 0px 3px 40px 10px rgba(231,236,238,0.97);
+    -moz-box-shadow: 0px 3px 40px 10px rgba(231,236,238,0.97);
+    box-shadow: 0px 3px 40px 10px rgba(231,236,238,0.97);
+    
+    .guide-header {
+        @include bg-grardient-2;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        text-transform: uppercase;
+        font-family: $font-lato-black;
+        color: $color-white;
+        padding:  20px 0;
+    }
+
+    .guide-content {
+        padding: 0 15px;
+        background: $color-white;
+        list-style: none;
+        margin-bottom: 30px;
+
+        li {
+            padding: 12px 0;
+            display: flex;
+            flex-wrap: wrap;
+            &:not(:last-child){
+                border-bottom: 1px solid $color-five;
+            }
+        }
+
+        .info-icon {
+            margin-right: 15px;
+            font-family: $font-lato-bold;
+            position: relative;
+            top: -2px;
+        }
+
+        .info-content {
+            text-align: left;
+            width: 80%;
+            .info-title {
+                font-family: $font-lato-bold;
+            }
+            .info-desc {
+                padding-top: 5px;
+            }
+        }
+    }
+}

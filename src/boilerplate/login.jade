@@ -1,0 +1,31 @@
+extends templates/layouts/one-colum
+block head
+  +head('Login', 'description', 'keywords', '', '', '', '')
+block content
+    .wrapper#wrapper.page-bg-white
+        +header('menu.svg', 'home.svg') 
+        .container 
+            .panel-login
+                h1.login-logo
+                    img(src='./assets/img/icons/64x64/login.svg', alt='Login logo', width='64', height='64')
+                h2.login-heading login
+                p.login-summary Using CW ID
+                form(action='')
+                    .form-group
+                        label.form-label(for='user')
+                            img(src='./assets/img/icons/24x24/user.svg', alt='User icon')
+                        input.form-control#user(type='text', name='user', placeholder='User')
+                    .form-group
+                        label.form-label(for='password')
+                            img(src='./assets/img/icons/24x24/pass.svg', alt='Password icon')
+                        input.form-control#password(type='password', name='password', placeholder='Password')
+                        img.form-icon(src='./assets/img/icons/24x24/eye-on.svg', alt='Eye icon')
+                    .form-group
+                        label.form-label(for='code-verify')
+                            img(src='./assets/img/icons/24x24/verify.svg', alt='Verify icon')
+                        input.form-control#verify(type='password', name='code-verify', placeholder='Code Verify')
+                        img.form-icon(src='./assets/img/icons/24x24/eye-on.svg', alt='Eye icon')
+                    p.login-verify Code Verify được cung cấp bởi admin công ty. Nếu chưa có vui lòng liên hệ.
+                    button.btn.btn-success(type='submit') login
+        .overlay#overlay
+        include templates/components/aside

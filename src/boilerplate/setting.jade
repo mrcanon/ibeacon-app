@@ -1,0 +1,34 @@
+extends templates/layouts/one-colum
+block head
+  +head('Setting', 'description', 'keywords', '', '', '', '')
+block content
+    .wrapper#wrapper.page-login
+        +header('menu.svg', 'home.svg') 
+        .container 
+            .panel-setting
+                h1.setting-logo
+                    img(src='./assets/img/icons/64x64/setting.svg', alt='Setting logo', width='64', height='64')
+                h2.setting-heading setting
+                .setting-language
+                    h4.setting-title Please select your language
+                    .setting-radio
+                        .form-group
+                            input.radio-input#vietnamese(type='radio', name='language', value='vi', checked=false)
+                            label.radio-label(for='vietnamese') 
+                                span.radio-outline
+                                    span.radio-tick
+                                span.radio-text Vietnamese
+                        .form-group
+                            input.radio-input#english(type='radio', name='language', value='en', checked=true)
+                            label.radio-label(for='english') 
+                                span.radio-outline
+                                    span.radio-tick
+                                span.radio-text English
+                        .form-group
+                            input.radio-input#japanese(type='radio', name='language', value='ja', checked=false)
+                            label.radio-label(for='japanese') 
+                                span.radio-outline
+                                    span.radio-tick
+                                span.radio-text Japanese
+        .overlay#overlay
+        include templates/components/aside    

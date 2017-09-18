@@ -1,0 +1,94 @@
+extends templates/layouts/one-colum
+block head
+  +head('History', 'description', 'keywords', '', '', '', '')
+block content
+    .wrapper#wrapper.page-history
+        +header('menu-white.svg', 'home-white.svg') 
+        .container   
+            .history-page.section-page
+                .history-logo
+                    img(src='assets/img/icons/64x64/history.svg', width='64', height='64')
+                h2.history-title history
+                p.history-desc Lịch sử ra vào công ty của bạn
+                .history-container
+                    .history-checkin
+                        .history-list
+                            .history-header 
+                                .history-day Today
+                                .history-date 07/09/2017 
+                            ul.history-content
+                                li
+                                    .item-time 08:30
+                                    .item-name Codeshore
+                                li
+                                    .item-time 09:00
+                                    .item-name SS-Global
+                                li
+                                    .item-time 09:45
+                                    .item-name BackOffice
+                                li
+                                    .item-time 11:29
+                                    .item-name Metting room
+                                li
+                                    .item-time 11:58
+                                    .item-name Codeshore
+                                li
+                                    .item-time 12:40
+                                    .item-name Divison 1                        
+                                li
+                                    .item-time 16:33
+                                    .item-name SS-Global  
+                        .history-list
+                            .history-header 
+                                .history-day Yesterday
+                                .history-date 07/09/2017
+                            ul.history-content
+                                li
+                                    .item-time 08:30
+                                    .item-name Codeshore
+                                li
+                                    .item-time 09:00
+                                    .item-name SS-Global
+                                li
+                                    .item-time 09:45
+                                    .item-name BackOffice
+                                li
+                                    .item-time 11:29
+                                    .item-name Metting room
+                                li
+                                    .item-time 11:58
+                                    .item-name Codeshore
+                                li
+                                    .item-time 12:40
+                                    .item-name Divison 1                        
+                                li
+                                    .item-time 16:33
+                                    .item-name SS-Global  
+                        .history-list
+                            .history-header 
+                                .history-day Friday
+                                .history-date 07/09/2017
+                            ul.history-content 
+                                li 
+                                    .item-time 08:30
+                                    .item-name Codeshore
+                                li
+                                    .item-time 09:00
+                                    .item-name SS-Global
+                                li
+                                    .item-time 09:45
+                                    .item-name BackOffice
+                                li
+                                    .item-time 11:29
+                                    .item-name Metting room
+                                li
+                                    .item-time 11:58
+                                    .item-name Codeshore
+                                li
+                                    .item-time 12:40
+                                    .item-name Divison 1                        
+                                li
+                                    .item-time 16:33
+                                    .item-name SS-Global                            
+        .overlay#overlay
+        include templates/components/aside

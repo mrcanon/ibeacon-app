@@ -1,0 +1,101 @@
+.page-home {
+    min-height: 100vh;
+    color: $color-eight;
+
+    a {
+
+        &:hover {
+            color: $color-third;
+            text-decoration: none;
+        }
+    }
+}
+
+.home-logo {
+    text-align: center;
+    line-height: 1;
+    margin: 25px 0 5px;
+}
+
+.home-item {
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    min-height: 90px;
+    padding: 0 10px;
+    box-shadow:  0 0 10px rgba($color-black, .3);
+
+    &:not(:last-child) {
+        margin-bottom: 10px;
+    }
+
+    &:nth-child(odd) {
+        @include bg-grardient-4;
+    }
+
+    &:nth-child(even) {
+        @include bg-grardient-2;
+    }
+}
+
+.home-media {
+    flex: 1;
+}
+
+.home-content {
+    flex: 3;
+    padding: 10px 6px;
+}
+
+.desc-desc {
+    text-align: center;
+    font-family: $font-lato-regular;
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+.home-heading {
+    // font-family: $font-lato-black;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: $color-white;
+    margin: 0 0 5px;
+}
+.home-summary {
+    font-family: $font-lato-regular;
+    font-size: $base-h5-font-size;
+    color: $color-white;
+    margin: 0;
+}
+
+.home-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    padding: 0 6px; 
+    
+    li {
+        flex: 1;
+        border-radius: 5px;
+        box-shadow:  0 0 10px rgba($color-black, .15);
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        //align-items: center;
+
+        &:nth-child(2) {
+            margin: 0 10px;
+        }
+
+        a {
+            display: block;
+            padding: 8px;
+            width: 100%;
+        }
+        
+        span {
+            display: block;
+            font-size: $base-h6-font-size;
+            font-family: $font-lato-bold;
+        }
+    }
+}

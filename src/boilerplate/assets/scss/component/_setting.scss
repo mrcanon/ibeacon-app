@@ -1,0 +1,34 @@
+.setting-logo {
+    margin: 10px 0 35px;
+    text-align: center;
+}
+
+.setting-heading {
+  font-size: $base-h2-font-size;
+  text-transform: uppercase;
+  font-family: $font-lato-black;
+  color: $color-seven;
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.setting-language {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.setting-radio {
+  min-width: 130px;
+}
+
+.setting-language {
+    
+  .setting-title {
+    margin-bottom: 20px;
+  }
+
+  .radio-text{
+    color: $base-font-color;
+  }
+}

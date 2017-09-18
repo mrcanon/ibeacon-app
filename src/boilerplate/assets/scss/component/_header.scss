@@ -1,0 +1,18 @@
+.header {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.header-menu,
+.header-home {
+    display: inline-block;
+    padding: 8px;
+}
+
+.header-menu {
+    float: left;
+}
+
+.header-home {
+    float: right;
+}

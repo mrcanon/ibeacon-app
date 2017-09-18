@@ -1,0 +1,95 @@
+//======================================================================================================================
+//! Global Typography
+//======================================================================================================================
+@import 'variables/base';
+//======================================================================================================================
+//! Global Colors
+//======================================================================================================================
+// Colors don't change
+$color-white:                               #fff !default;
+$color-black:                               #000 !default;
+$color-black-opacity-125:                   rgba($color-black, .125) !default;
+
+// Colors can change
+$color-primary:                             #52b346 !default;
+$color-second:                              #1e4233 !default;
+$color-third:                               #4a4a4a !default;
+$color-four:                                #606060  !default;
+$color-five:                                #d2d2d2  !default;
+$color-six:                                 #9b9b9b  !default;
+$color-seven:                               #7ed321 !default;
+$color-eight:                               #f9f9f9 !default;
+// $color-nine:                                #16295b !default;
+// $color-ten:                                 #89bf41 !default;
+// $color-eleven:                              #c2c2c2 !default;
+// $color-twelve:                              #a1a1a1 !default;
+
+//======================================================================================================================
+//! Buttons
+//======================================================================================================================
+$btn-font-weight:                           600 !default;
+$btn-font-size:                             12px !default;
+$btn-line-height:                           18 / 12 !default;
+$btn-padding-vertical-default:              15px;
+$btn-padding-horizontal-default:            30px;
+$btn-border-radius-default:                 25px !default;
+
+// Button default
+$btn-default-color:                         $color-white !default;
+$btn-default-bg:                            #147442 !default;
+$btn-default-gradient:                      #52b34a !default;
+$btn-default-border:                        #147442 !default;
+$btn-default-hover-border:                  #147442 !default;
+
+// Button large
+$btn-padding-vertical-large:                10px;
+$btn-padding-horizontal-large:              40px;
+$btn-font-size-large:                       10px;
+$btn-border-radius-large:                   23px !default;
+
+// Button small
+$btn-padding-vertical-small:                0;
+$btn-padding-horizontal-small:              10px;
+$btn-font-size-small:                       10px;
+$btn-border-radius-small:                   14px !default;
+
+// Button primary
+$btn-primary-bg:                            $color-primary !default;
+$btn-primary-border:                        $color-primary !default;
+$btn-primary-color:                         $color-white !default;
+$btn-primary-hover-color:                   #fff !default;
+$btn-primary-hover-bg:                      $color-primary !default;
+$btn-primary-hover-border:                  $color-primary !default;
+
+// Button second
+$btn-second-bg:                             $color-second !default;
+$btn-second-border:                         $color-second !default;
+$btn-second-color:                          #fff !default;
+$btn-second-hover-color:                    #fff !default;
+$btn-second-hover-bg:                       $color-four !default;
+$btn-second-hover-border:                   $color-four !default;
+
+// Button third
+$btn-third-bg:                              $color-primary !default;
+$btn-third-border:                          $color-primary !default;
+$btn-third-color:                           #fff !default;
+$btn-third-hover-color:                     $color-primary !default;
+$btn-third-hover-bg:                        #fff !default;
+$btn-third-hover-border:                    $color-primary !default;
+
+// Button Alert
+$btn-warning-bg:                            #ffce54;
+$btn-warning-border:                        #ffce54;
+$btn-info-bg:                               #3bafda;
+$btn-info-border:                           #3bafda;
+$btn-success-bg:                            #8cc152;
+$btn-success-border:                        #8cc152;
+$btn-danger-bg:                             #da4453;
+$btn-danger-border:                         #da4453;
+
+//======================================================================================================================
+//! Tên component
+//======================================================================================================================
+$font-lato-regular:                         'Lato', sans-serif !default;
+$font-lato-bold:                            'LatoBold', sans-serif !default;
+$font-lato-black:                           'LatoBlack', sans-serif !default;

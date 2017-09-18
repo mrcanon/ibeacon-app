@@ -1,0 +1,32 @@
+extends templates/layouts/one-colum
+block head
+  +head('Wellcome', 'description', 'keywords', '', '', '', '')
+block content 
+    .wrapper#wrapper.page-wellcome
+        +header('menu-white.svg', 'home-white.svg') 
+        .container   
+            .wellcome-page
+                .wellcome-content
+                    .wellcome-logo
+                        img(src='assets/img/profile.jpg', width='100', height='100')
+                    .wellcom-star
+                        img(src='assets/img/icons/64x64/star.svg')
+                    p.wellcome-desc Chào ngày mới!
+                    h2.wellcome-title Lê ngọc việt       
+                    .wellcome-container 
+                        ul.wellcome-content
+                            li.info-content
+                                .info-title Người đến công ty trước bạn
+                                .info-desc Nguyễn Tiến Dũng
+                            li.info-content
+                                .info-title Người đến công ty sau bạn
+                                .info-desc Aki ra
+                            li.info-content
+                                .info-title Hôm nay bạn là người thứ
+                                .info-desc 188 
+                                .info-title đến công ty         
+                a.wellcome-share
+                    img(src='assets/img/fb-logo.svg', width='18', height='18') 
+                    span SHARE NOW
+        .overlay#overlay
+        include templates/components/aside

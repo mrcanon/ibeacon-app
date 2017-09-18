@@ -1,0 +1,83 @@
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+// ==========================================================================
+// Print styles.
+// Inlined to avoid the additional HTTP request: h5bp.com/r
+// ==========================================================================
+
+@media print {
+  // All Elements
+  * {
+    &::before,
+    &::after {
+      background: transparent;
+      box-shadow: none;
+      color: $color-black;
+      text-shadow: none;
+    }
+  }
+
+  // Links
+  a {
+    &,
+    &:visited {
+      text-decoration: underline;
+    }
+
+    &[href] {
+      &::after {
+        content: ' (" attr(href) ")';
+      }
+    }
+
+    &[href^='#'],
+    &[href^='javascript:'] {
+      &::after {
+        content: '';
+      }
+    }
+  }
+
+  // Code and Blockquotes
+  pre,
+  blockquote {
+    page-break-inside: avoid;
+  }
+
+  // Tables
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+  }
+
+  // Images
+  img {
+    page-break-inside: avoid;
+  }
+
+  // Typography
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  abbr {
+
+    &[title] {
+
+      &::after {
+        content: ' (" attr(title) ")';
+      }
+    }
+  }
+}

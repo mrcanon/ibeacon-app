@@ -1,0 +1,62 @@
+// Core variables and mixins
+@import 'component/variables';
+@import 'component/mixins';
+
+
+/*------------------------------------------------------------------
+[Table of contents]
+1. Reset
+2. Typography
+3. Grid
+4. Elements
+98. Print
+99. Helpers
+
+-------------------------------------------------------------------*/
+/*------------------------------------------------------------------
+[1. Reset]
+*/
+@import 'component/core/normalize';
+
+/*------------------------------------------------------------------
+[2. Typography]
+*/
+@import 'component/core/scaffolding';
+@import 'component/core/type';
+@import 'component/core/code';
+
+/*------------------------------------------------------------------
+[3. Grid]
+*/
+@import 'component/core/grid';
+
+/*------------------------------------------------------------------
+[4. Elements]
+*/
+@import 'component/core/buttons';
+@import 'component/core/form';
+
+/*------------------------------------------------------------------
+[5. Component]
+*/
+@import 'component/header';
+@import 'component/layout';
+@import 'component/history';
+@import 'component/guide';
+@import 'component/aside';
+@import 'component/wellcome';
+@import 'component/home';
+@import 'component/login';
+@import 'component/setting';
+
+
+
+/*------------------------------------------------------------------
+[98. Print]
+*/
+@import 'component/core/print';
+
+/*------------------------------------------------------------------
+[99. Helpers]
+*/
+@import 'component/helpers';

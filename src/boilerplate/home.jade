@@ -1,0 +1,43 @@
+extends templates/layouts/one-colum
+block head
+  +head('HomePage', 'description', 'keywords', '', '', '', '')
+block content 
+    .wrapper#wrapper.page-home
+        .container   
+            .home-logo
+                img(src='assets/img/logo.svg', width='128', height='128',alt='')
+            .home-content
+                a.home-item(href="#")
+                    .home-media
+                        img(src='assets/img/icons/64x64/icon-guide.svg', alt='', width='64', height='64')
+                    .home-content
+                        h2.home-heading Auto guide
+                        p.home-summary Tự động giới thiệu các dự án và khu vựa tại CW
+                
+                a.home-item(href="#")
+                    .home-content
+                        h2.home-heading History
+                        p.home-summary Lịch sử ra vào công ty
+                    .home-media
+                        img(src='assets/img/icons/64x64/history.svg', alt='', width='64', height='64') 
+
+                a.home-item(href="#")
+                    .home-media
+                        img(src='assets/img/icons/64x64/location.svg', alt='', width='64', height='64')
+                    .home-content
+                        h2.home-heading Indoor Location
+                        p.home-summary Định vị trong tòa nhà công ty
+                
+            ul.home-list
+                li
+                    a(href="#")
+                        img(src='assets/img/icons/24x24/login.svg', alt='', width='24', height='24')
+                        p.menu-login Login
+                li
+                    a(href="#")
+                        img(src='assets/img/icons/24x24/setting.svg', alt='', width='24', height='24')
+                        p.menu-login Setting 
+                li
+                    a(href="#")
+                        img(src='assets/img/icons/24x24/about.svg', alt='', width='24', height='24')
+                        p.menu-login About Us

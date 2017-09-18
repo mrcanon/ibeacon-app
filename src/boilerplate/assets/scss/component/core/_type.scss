@@ -1,0 +1,210 @@
+//
+// Typography
+// --------------------------------------------------
+
+
+// Headings
+// -------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $base-headings-color;
+  font-family: $base-headings-font-family;
+  font-weight: $base-headings-font-weight;
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: ($line-height-computed / 2);
+  margin-top: $line-height-computed;
+}
+
+h4,
+h5,
+h6 {
+  margin-bottom: ($line-height-computed / 2);
+  margin-top: ($line-height-computed / 2);
+}
+
+h1 { 
+  font-size: $base-h1-font-size; 
+  line-height: 1.25;
+}
+
+h2 { 
+  font-size: $base-h2-font-size; 
+  line-height: 1.15384615;
+}
+
+h3 { 
+  font-size: $base-h3-font-size; 
+  line-height: 1.13636364;
+}
+
+h4 {
+   font-size: $base-h4-font-size; 
+   line-height: 1.11111111;
+}
+
+h5 { 
+  font-size: $base-h5-font-size; 
+  line-height: 1.11111111;
+}
+
+h6 {
+   font-size: $base-h6-font-size; 
+   line-height: 1.11111111;
+}
+
+
+// Body text
+// -------------------------
+
+p {
+  margin: 0 0 ($line-height-computed / 2);
+}
+
+// Emphasis & misc
+// -------------------------
+
+// Ex: (12px small font / 14px base font) * 100% = about 85%
+small {
+  font-size: floor((100% * $base-font-size-small / $base-font-size));
+}
+
+mark {
+  background-color: $mark-bg-color;
+  padding: .2em;
+}
+// Lists
+// -------------------------
+
+// Unordered and Ordered lists
+ul,
+ol {
+  margin-bottom: ($line-height-computed / 2);
+  margin-top: 0;
+
+  ul,
+  ol {
+    margin-bottom: 0;
+  }
+}
+
+// Description Lists
+dl {
+  margin-bottom: $line-height-computed;
+  margin-top: 0; // Remove browser default
+}
+
+dt,
+dd {
+  line-height: $base-line-height;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0; // Undo browser default
+}
+
+// Misc
+// -------------------------
+
+// Abbreviations and acronyms
+abbr {
+
+  &[title] {
+    border-bottom: 1px dotted $abbr-border-color;
+    cursor: help;
+  }
+}
+
+// Blockquotes
+blockquote {
+  border-left: 5px solid $blockquote-border-color;
+  font-size: $blockquote-font-size;
+  margin: 0 0 $line-height-computed;
+  padding: ($line-height-computed / 2) $line-height-computed;
+
+  p,
+  ul,
+  ol {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Note: Deprecated small and .small as of v3.1.0
+  // Context: https://github.com/twbs/bootstrap/issues/11660
+  footer,
+  small {
+    color: $blockquote-small-color;
+    display: block;
+    font-size: 80%; // back to default font-size
+    line-height: $base-line-height;
+
+    &::before {
+      content: '\2014 \00A0'; // em dash, nbsp
+    }
+  }
+}
+
+// Addresses
+address {
+  font-style: normal;
+  line-height: $base-line-height;
+  margin-bottom: $line-height-computed;
+}
+
+
+@media (min-width: $screen-sm-min) {
+  p {
+    margin-bottom: $line-height-computed;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  h1 {
+    font-size: 40px;
+    line-height: 1.125;
+  }
+
+  h2 {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 22px;
+    line-height: 1.125;
+  }
+
+  h4 {
+    font-size: 18px;
+    line-height: 1.111
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  h1 {
+    font-size: 48px;
+    line-height: 1.05;
+  }
+
+  h2 {
+    font-size: 36px;
+  }
+
+  h3 {
+    font-size: 24px;
+  }
+}
+

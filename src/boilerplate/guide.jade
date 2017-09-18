@@ -1,0 +1,42 @@
+extends templates/layouts/one-colum
+block head
+  +head('Guide', 'description', 'keywords', '', '', '', '')
+block content
+    .wrapper#wrapper.page-bg-white
+        +header('menu.svg', 'home.svg') 
+        .container  
+            .guide-page.section-page
+                .guide-logo
+                    img(src='assets/img/icons/64x64/icon-guide.svg', width='64', height='64')
+                h2.guide-title guide
+                p.guide-desc Thông tin nơi bạn đang đứng
+                .guide-container
+                    .guide-header SS Codeshore Division
+                    ul.guide-content
+                        li
+                            .info-icon
+                                img(src="assets/img/icons/24x24/dm.svg", alt="", width='24', height='24')
+                            .info-content
+                                .info-title DM
+                                .info-desc Nguyễn Tiến Dũng
+                        li
+                            .info-icon
+                                img(src="assets/img/icons/24x24/user-group.svg", alt="", width='24', height='24')
+                            .info-content
+                                .info-title Headcount
+                                .info-desc 30
+                        li
+                            .info-icon
+                                img(src="assets/img/icons/24x24/description.svg", alt="", width='24', height='24')
+                            .info-content
+                                .info-title Descriptiom
+                                .info-desc Codeshore là một bộ phận phụ trách phát triển phần Front-End cho các dự án của công ty. Codeshore đã và đang nhận được nhiều sự đánh giá cao của khách hàng.
+                        li
+                            .info-icon
+                                img(src="assets/img/icons/24x24/achive.svg", alt="", width='24', height='24')
+                            .info-content
+                                .info-title Achievement
+                                .info-desc 2 huy chương vàng bóng bàn
+                        
+        .overlay#overlay
+        include templates/components/aside                                    
