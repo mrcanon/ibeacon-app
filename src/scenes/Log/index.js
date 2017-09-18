@@ -10,6 +10,7 @@ import classnames from 'classnames'
 import axios from 'axios'
 import LogItem from './components/LogItem'
 import LogHeader from './components/LogHeader'
+import { Redirect, withRouter } from 'react-router-dom'
 
 import 'slick-carousel';
 import 'slick-carousel/slick/slick.css'
@@ -46,22 +47,31 @@ class Log extends React.Component {
 
     componentWillMount() {
         const { toggleLoading, user } = { ...this.props }
-        toggleLoading(user.isLoading)
+        if (user.isAuthenticated) {
+            toggleLoading(user.isLoading)
+        } else {
+            this.props.history.push('/login')
+        }
     }
 
     componentDidMount() {
-        axios.get("http://59bd2f925037eb00117b4b2c.mockapi.io/log")
-            .then((res) => {
-                this.setState({
-                    logTime: res.data
-                })
+        const { user } = { ...this.props }
+        if (user.isAuthenticated) {
+            axios.get("http://59bd2f925037eb00117b4b2c.mockapi.io/log")
+                .then((res) => {
+                    this.setState({
+                        logTime: res.data
+                    })
 
-                this.carousel()
-            })
-            .then(() => {
-                const { toggleLoading, user } = { ...this.props }
-                toggleLoading(user.isLoading)
-            })
+                    this.carousel()
+                })
+                .then(() => {
+                    const { toggleLoading, user } = { ...this.props }
+                    toggleLoading(user.isLoading)
+                })
+        } else {
+            this.props.history.push('/login')
+        }
     }
 
     render() {
@@ -70,6 +80,7 @@ class Log extends React.Component {
 
         return (
             <div className={classnames('wrapper page-history', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
+
                 <Header toggleMenu={toggleMenu} isMenu={user.isMenu} srcHome={srcHome} srcMenu={srcMenu} />
                 <div className="container">
                     <div className="history-page section-page">

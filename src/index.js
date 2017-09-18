@@ -16,6 +16,7 @@ import Setting from './scenes/Setting'
 import Log from './scenes/Log'
 import About from './scenes/About'
 import Guide from './scenes/Guide'
+import Login from './scenes/Login'
 
 const store = configStore()
 
@@ -30,6 +31,7 @@ ReactDOM.render(
                     <Route path="/log" component={Log} />
                     <Route path="/about" component={About} />
                     <Route path="/guide" component={Guide} />
+                    <Route path="/login" component={Login} />
                 </Switch>
             </Router>
         </Provider>
