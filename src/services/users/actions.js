@@ -1,4 +1,4 @@
-import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING, TOGGLE_LOGIN } from './actionTypes'
+import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING, TOGGLE_LOGIN, LOGOUT } from './actionTypes'
 let timer = null
 export function toggleMenu(status) {
   return {
@@ -14,10 +14,16 @@ export function changeLng(lng) {
   }
 }
 
-export function toggleLogin(data){
-  return{
+export function toggleLogin(data) {
+  return {
     type: TOGGLE_LOGIN,
     data
+  }
+}
+
+export function logout() {
+  return {
+    type: LOGOUT
   }
 }
 
