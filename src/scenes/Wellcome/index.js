@@ -23,12 +23,12 @@ class Wellcome extends React.Component {
 
     componentWillMount(){
         const { toggleLoading, user } = { ...this.props }
-        // toggleLoading(user.isLoading)
+        toggleLoading(user.isLoading)
     }
 
     componentDidMount() {
         const { toggleLoading, user } = { ...this.props }
-        toggleLoading(user.isLoading)
+        toggleLoading(true)
     }
 
     render() {

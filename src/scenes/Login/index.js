@@ -87,13 +87,12 @@ class Login extends React.Component {
                     toggleLogin(res.data)
                 })
                 .catch((error) => {
-                    toggleLoading(user.isLoading)
                     if (error.response.status == 404) {
                         this.setState({
                             errors: {},
                             errorLogin: "User hoặc password không đúng"
                         })
-                        
+                        toggleLoading(true)
                         alert(this.state.errorLogin)
                     }
                 })

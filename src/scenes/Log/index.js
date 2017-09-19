@@ -52,6 +52,7 @@ class Log extends React.Component {
 
     componentDidMount() {
         const { user } = { ...this.props }
+        
         axios.get("http://59bd2f925037eb00117b4b2c.mockapi.io/log")
             .then((res) => {
                 this.setState({
@@ -69,20 +70,6 @@ class Log extends React.Component {
     render() {
         const { t, toggleMenu, user } = { ...this.props }
         const { logTime } = { ...this.state }
-
-        const PrivateRoute = ({ component: Component, ...rest }) => (
-            <Route {...rest} render={props => (
-                fakeAuth.isAuthenticated ? (
-                    <Component {...props} />
-                ) : (
-                        <Redirect to={{
-                            pathname: '/login',
-                            state: { from: props.location }
-                        }} />
-                    )
-            )} />
-        )
-
 
         return (
             <div className={classnames('wrapper page-history', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
