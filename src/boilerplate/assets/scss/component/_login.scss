@@ -27,6 +27,15 @@ form{
     .form-group{
         position: relative;
         margin-bottom: 30px; 
+        .help-block{
+            display: block;
+            text-align: left;
+            padding: 5px 0;
+            position: absolute
+        }
+        &.has-error{
+            color: #a94442;
+        }
     }
 }
 

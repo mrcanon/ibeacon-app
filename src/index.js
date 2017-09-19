@@ -18,23 +18,27 @@ import Log from './scenes/Log'
 import About from './scenes/About'
 import Guide from './scenes/Guide'
 import Login from './scenes/Login'
+import App from './scenes/App'
 
 const store = configStore()
 
 ReactDOM.render(
     <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-            <Router>
-                <Switch>
+            {/* <Router> */}
+                <App />
+                {/* <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/wellcome" component={Wellcome} />
                     <Route path="/setting" component={Setting} />
                     <Route path="/about" component={About} />
                     <Route path="/guide" component={Guide} />
                     <Route path="/login" component={Login} />
-                    <PrivateRoute authed={store.getState().user.isAuthenticated} path='/log' component={Log} />
-                </Switch>
-            </Router>
+                    <Route path="/wellcome" component={Wellcome} /> */}
+                    {/* <Route path="/log" component={Log} /> */}
+                    {/* <PrivateRoute authed={store.getState().user.isAuthenticated} path='/wellcome' component={Wellcome} /> */}
+                    {/* <PrivateRoute authed={store.getState().user.isAuthenticated} path='/log' component={Log} /> */}
+                {/* </Switch>
+            </Router> */}
         </Provider>
     </I18nextProvider>
     , document.getElementById('root-app')

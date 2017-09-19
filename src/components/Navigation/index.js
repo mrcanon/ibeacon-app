@@ -4,14 +4,16 @@ import PropTypes from 'prop-types'
 import MenuLInk from './components/MenuLink'
 import srcSetting from '../../boilerplate/assets/img/icons/24x24/setting.svg'
 import srcGroup from '../../boilerplate/assets/img/icons/24x24/user-group2.svg'
-import { translate } from 'react-i18next';
+import { translate } from 'react-i18next'
+import { connect } from 'react-redux'
+import classnames from 'classnames'
 
 @translate(['nav'], { wait: true })
 
 class Navigation extends React.Component {
     
     render() {
-        const { t } = { ...this.props }
+        const { t, user } = { ...this.props }
         return (
             <div className="splitter">
                 <div className="splitter-profile">
@@ -31,4 +33,10 @@ Navigation.propTypes = {
     t: PropTypes.func.isRequired
 }
 
-export default Navigation
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Navigation)
