@@ -23,8 +23,7 @@ class App extends Component {
                     <Route path="/about" component={About} />
                     <Route path="/guide" component={Guide} />
                     <Route path="/login" component={Login} />
-                    <Route path="/wellcome" component={Wellcome} />
-                    {/* <PrivateRoute authed={user.isAuthenticated} path='/wellcome' component={Wellcome} /> */}
+                    <PrivateRoute authed={user.isAuthenticated} path='/wellcome' component={Wellcome} />
                     <PrivateRoute authed={user.isAuthenticated} path='/log' component={Log} />
                 </Switch>
             </Router>
