@@ -39,6 +39,31 @@ form{
     }
 }
 
+.alert-message{
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 180px;
+    background: #52b346;
+    text-align: center;
+    padding: 20px 10px;
+    color: #fff;
+    font-size: 20px;
+    .alert-content{
+        height: 70%;
+    }
+    &.hidden-alert{
+        display: none;
+    }
+    button{
+        color: #000;
+        border-radius: 50px;
+        border-color: #fff;
+    }
+}
+
 .panel-login .form-control{
     padding-left: 35px;
     height: 30px;

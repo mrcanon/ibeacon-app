@@ -63,6 +63,13 @@ class Login extends React.Component {
         return isValid;
     }
 
+    onCloseAlert(e){
+        e.preventDefault()
+        if(!$("#alert-message").hasClass("hidden-alert")){
+            $("#alert-message").addClass("hidden-alert")
+        }
+    }
+
     onLogin(e) {
         e.preventDefault()
         const { toggleLogin, toggleLoading, user } = { ...this.props }
@@ -93,7 +100,9 @@ class Login extends React.Component {
                             errorLogin: "User hoặc password không đúng"
                         })
                         toggleLoading(true)
-                        alert(this.state.errorLogin)
+                        if($("#alert-message").hasClass("hidden-alert")){
+                            $("#alert-message").removeClass("hidden-alert")
+                        }
                     }
                 })
         }
@@ -136,6 +145,10 @@ class Login extends React.Component {
                             <button type="submit" className="btn btn-success" onClick={this.onLogin} >{t('common:login')}</button>
                         </form>
                     </div>
+                </div>
+                <div className="alert-message hidden-alert" id="alert-message">
+                    <div className="alert-content">Tài khoản hoặc mật khẩu chưa đúng</div>
+                    <button onClick={this.onCloseAlert}>Close</button>
                 </div>
                 <Overlay toggleMenu={toggleMenu} isMenu={user.isMenu} />
                 <Navigation t={t} />
