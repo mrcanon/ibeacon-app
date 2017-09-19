@@ -19,9 +19,10 @@ import srcFb from '../../boilerplate/assets/img/fb-logo.svg'
 class Wellcome extends React.Component {
     constructor(props) {
         super(props)
+        this.renderInfo = this.renderInfo.bind(this)
     }
 
-    componentWillMount(){
+    componentWillMount() {
         const { toggleLoading, user } = { ...this.props }
         toggleLoading(user.isLoading)
     }
@@ -29,6 +30,27 @@ class Wellcome extends React.Component {
     componentDidMount() {
         const { toggleLoading, user } = { ...this.props }
         toggleLoading(true)
+    }
+
+    renderInfo(status) {
+        const { t, user } = { ...this.props }
+        let dataUser = user.dataUser;
+
+        if (status) {
+            return (
+                <li className="info-content">
+                    <div className="info-title">{t('wellcome:people_before')}</div>
+                    <div className="info-desc">{t('wellcome:people_first')}</div>
+                </li>
+            )
+        } else {
+            return (
+                <li className="info-content">
+                    <div className="info-title">{t('wellcome:people_before')}</div>
+                    <div className="info-desc">{dataUser.pLast}</div>
+                </li>
+            )
+        }
     }
 
     render() {
@@ -42,27 +64,26 @@ class Wellcome extends React.Component {
                     <div className="wellcome-page">
                         <div className="wellcome-content">
                             <div className="wellcome-logo"><img src={dataUser.imageUrl} width="100" height="100" /></div>
-                            <div className="wellcom-star"><img src={srcStart} /></div>
-                            <p className="wellcome-desc">Chào ngày mới!</p>
+                            {
+                                (dataUser.places === '1') ? <div className="wellcom-star"><img src={srcStart} /></div> : ""
+                            }
+                            <p className="wellcome-desc">{t('wellcome:wellcome_desc')}</p>
                             <h2 className="wellcome-title">{dataUser.fullName}</h2>
                             <div className="wellcome-container">
                                 <ul className="wellcome-content">
+                                    {this.renderInfo(dataUser.places === '1')}
                                     <li className="info-content">
-                                        <div className="info-title">Người đến công ty trước bạn</div>
-                                        <div className="info-desc">{dataUser.pLast}</div>
-                                    </li>
-                                    <li className="info-content">
-                                        <div className="info-title">Người đến công ty sau bạn</div>
+                                        <div className="info-title">{t('wellcome:people_after')}</div>
                                         <div className="info-desc">{dataUser.pFirst}</div>
                                     </li>
                                     <li className="info-content">
-                                        <div className="info-title">Hôm nay bạn là người thứ</div>
+                                        <div className="info-title">{t('wellcome:class_1')}</div>
                                         <div className="info-desc">{dataUser.places} </div>
-                                        <div className="info-title">đến công ty</div>
+                                        <div className="info-title">{t('wellcome:class_2')}</div>
                                     </li>
                                 </ul>
                             </div>
-                        </div><a className="wellcome-share"><img src={srcFb} width="18" height="18" /><span>SHARE NOW</span></a>
+                        </div><a className="wellcome-share"><img src={srcFb} width="18" height="18" /><span>{t('wellcome:share_fb')}</span></a>
                     </div>
                 </div>
                 <Overlay toggleMenu={toggleMenu} isMenu={user.isMenu} />
