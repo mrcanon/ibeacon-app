@@ -1,9 +1,10 @@
 {
-    "login_desc": "Using CO-WELL ID",
-    "placeholder_user": "User",
-    "placeholder_password": "Password",
-    "placeholder_code": "Code Verify",
-    "desc": "Code Verify is provided by the company admin. If not, please contact us.",
-    "error_input": "This field is required",
-    "error_login": "The user or password is incorrect"
+  "login_desc": "Using CO-WELL ID",
+  "placeholder_user": "User",
+  "placeholder_password": "Password",
+  "placeholder_code": "Code Verify",
+  "desc": "Code Verify is provided by the company admin. If not, please contact us.",
+  "error_input": "This field is required!",
+  "error_login": "User, password or code verify is incorrect!",
+  "close_alert": "Close"
 }

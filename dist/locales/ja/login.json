@@ -1,1 +1,10 @@
-{}
+{
+  "login_desc": "使用 CO-WELL 身元",
+  "placeholder_user": "ユーザー",
+  "placeholder_password": "パスワード",
+  "placeholder_code": "コード検証",
+  "desc": "コード検証は、会社の管理者によって提供されます。 そうでない場合は、お問い合わせください。",
+  "error_input": "この項目は必須です!",
+  "error_login": "ユーザー、パスワードまたはコードの確認が間違っています！",
+  "close_alert": "閉じる"
+}
