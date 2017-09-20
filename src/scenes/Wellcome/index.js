@@ -31,7 +31,7 @@ class Wellcome extends React.Component {
         return (
             <div className={classnames('wrapper', { 'is-show': user.isMenu })}>
                 <Header toggleMenu={toggleMenu} isMenu={user.isMenu} srcHome={srcHome} srcMenu={srcMenu} />
-                <h1>{t('common:appName')}</h1>
+                <h1>{t('common:welcome')}</h1>
                 <Overlay toggleMenu={toggleMenu} isMenu={user.isMenu} />
                 <Navigation t={t}/>
             </div>

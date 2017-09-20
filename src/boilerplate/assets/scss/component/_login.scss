@@ -26,7 +26,50 @@ form{
     margin-top: 20px;
     .form-group{
         position: relative;
-        margin-bottom: 30px; 
+        margin-bottom: 30px;
+        .help-block{
+            display: block;
+            text-align: left;
+            font-size: 10px;
+            padding: 5px 0;
+            position: absolute
+        }
+        &.has-error{
+            color: #a94442;
+        }
+    }
+}
+
+.alert-message{
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #504D4D;
+    border-radius: 7px;
+    transform: translate(-50%, -50%);
+    height: 180px;
+    background: $btn-warning-bg; 
+    text-align: center;
+    padding: 20px 10px;
+    font-size: $base-h3-font-size;
+    font-weight: $base-headings-font-weight;
+    
+    .alert-content{
+        height: 70%;
+    }
+    &.hidden-alert{
+        display: none;
+    }
+    button{
+        color: #fff;
+        border: 0;
+        border-radius: 50px;
+        padding: 5px 15px;
+        background: #f67e6a;
+        box-shadow: 5px 20px 50px rgba(246,126,106,.5);
+        font-size: 12px;
+        font-weight: 200;
     }
 }
 

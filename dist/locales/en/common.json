@@ -1,5 +1,6 @@
 {
   "app_name": "iBeacon App",
+  "welcome": "Welcome iBeacon App",
   "setting": "Setting",
   "about": "About Us",
   "login": "Login",

@@ -17,13 +17,16 @@ import Log from './scenes/Log'
 import About from './scenes/About'
 import Guide from './scenes/Guide'
 import Login from './scenes/Login'
+import App from './scenes/App'
+import PrivateRoute from './components/PrivateRoute'
 
 const store = configStore()
 
 ReactDOM.render(
     <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-            <Router>
+            <App />
+            {/* <Router>
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route path="/wellcome" component={Wellcome} />
@@ -33,7 +36,7 @@ ReactDOM.render(
                     <Route path="/login" component={Login} />
                     <Route path="/log" component={Log} />
                 </Switch>
-            </Router>
+            </Router> */}
         </Provider>
     </I18nextProvider>
     , document.getElementById('root-app')
