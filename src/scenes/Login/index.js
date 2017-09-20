@@ -32,8 +32,8 @@ class Login extends React.Component {
 			errors: {},
 			code_verify: '',
 			errorLogin: '',
-			togglePassword: true,
-			toggleVerify: true
+			togglePassword: false,
+			toggleVerify: false
 		}
 		this.onChangeInput = this.onChangeInput.bind(this)
 		this.onLogin = this.onLogin.bind(this)
@@ -54,12 +54,12 @@ class Login extends React.Component {
 		return isValid
 	}
 
-	toggleShowPassword(e) {
-		(this.state.togglePassword === true) ? this.setState({ togglePassword: false }) : this.setState({ togglePassword: true })
-	}
-
-	toggleShowVerify(e) {
-		(this.state.toggleVerify === true) ? this.setState({ toggleVerify: false }) : this.setState({ toggleVerify: true })
+	toggleShowText(e) {
+		if (e === "password") {
+			this.setState({ togglePassword: !this.state.togglePassword })
+		} else {
+			this.setState({ toggleVerify: !this.state.toggleVerify })
+		}
 	}
 
 	onCloseAlert(e) {
@@ -109,11 +109,7 @@ class Login extends React.Component {
 
 	render() {
 		const { t, toggleMenu, user } = { ...this.props }
-		const { errors, password } = { ...this.state }
-		const typePassword  = this.state.togglePassword ? 'password' : 'text'
-		const eyePassword  = this.state.togglePassword ? srcEyeOn : srcEyeOff
-		const typeVerify  = this.state.toggleVerify ? 'password' : 'text'
-		const eyeVerify  = this.state.toggleVerify ? srcEyeOn : srcEyeOff
+		const { errors, password, togglePassword, toggleVerify } = { ...this.state }
 
 		return (
 			<div id="wrapper" className={classnames('wrapper page-bg-white', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
@@ -134,14 +130,14 @@ class Login extends React.Component {
 							</div>
 							<div className={classnames("form-group", { "has-error": errors.password })}>
 								<label htmlFor="password" className="form-label"><img src={srcPass} alt="Password icon" /></label>
-								<input id="password" type={ typePassword } name="password" value={password} placeholder={t('login:placeholder_password')} className="form-control" onChange={this.onChangeInput} />
-								<img src={ eyePassword } className="form-icon" id='eye-password' onClick={() => this.toggleShowPassword()}/>
+								<input id="password" type={togglePassword ? "text" : "password"} name="password" value={password} placeholder={t('login:placeholder_password')} className="form-control" onChange={this.onChangeInput} />
+								<img src={togglePassword ? srcEyeOff : srcEyeOn} className="form-icon" id='eye-password' onClick={() => this.toggleShowText("password")} />
 								<span className="help-block">{errors.password}</span>
 							</div>
 							<div className={classnames("form-group", { "has-error": errors.code_verify })}>
 								<label htmlFor="code-verify" className="form-label"><img src={srcVerify} alt="Verify icon" /></label>
-								<input id="verify" type={ typeVerify } name="code_verify" placeholder={t('login:placeholder_code')} className="form-control" onChange={this.onChangeInput} />
-								<img src={ eyeVerify } className="form-icon" id='eye-verify' onClick={() => this.toggleShowVerify()} />
+								<input id="verify" type={toggleVerify ? "text" : "password"} name="code_verify" placeholder={t('login:placeholder_code')} className="form-control" onChange={this.onChangeInput} />
+								<img src={toggleVerify ? srcEyeOff : srcEyeOn} className="form-icon" id='eye-verify' onClick={() => this.toggleShowText("verify")} />
 								<span className="help-block">{errors.code_verify}</span>
 							</div>
 							<p className="login-verify">{t('login:desc')}</p>
