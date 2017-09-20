@@ -1,5 +1,5 @@
 .page-wellcome {
-    &::before {
+    &::after {
        content: '';
        position: absolute;
        left: 0;
@@ -28,18 +28,59 @@
         margin: 20px 0 0;
     }
 }
-.wellcome-logo img{
+.wellcome-logo > img{
     border-radius: 50%;
     border: 2px solid $color-white;
 }
 .wellcome-logo{
     position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
 }
 .wellcom-star img{
     position: absolute;
     top: 45px;
-    left: 80px;
+    left: -25px;
 }
+
+
+.zoomIn {
+	-webkit-animation: rotate-scale-up 0.65s linear both;
+	        animation: rotate-scale-up 0.65s linear both;
+}
+
+@-webkit-keyframes rotate-scale-up {
+    0% {
+        -webkit-transform: scale(1) rotateZ(360deg);
+        transform: scale(1) rotateZ(360deg);
+    }
+    50% {
+        -webkit-transform: scale(2) rotateZ(180deg);
+                transform: scale(2) rotateZ(180deg);
+    }
+    100% {
+        -webkit-transform: scale(1) rotateZ(0);
+        transform: scale(1) rotateZ(0);
+       
+    }
+}
+@keyframes rotate-scale-up {
+    0% {
+        -webkit-transform: scale(1) rotateZ(360deg);
+        transform: scale(1) rotateZ(360deg);
+    }
+    50% {
+        -webkit-transform: scale(2) rotateZ(180deg);
+                transform: scale(2) rotateZ(180deg);
+    }
+    100% {
+        -webkit-transform: scale(1) rotateZ(0);
+        transform: scale(1) rotateZ(0);
+       
+    }
+}
+  
 
 .wellcome-content{
     padding: 0 10px;
@@ -82,6 +123,7 @@
     align-items: center;
     font-size: $base-h5-font-size;
     padding: 15px 45px; 
+    text-transform: uppercase;
     &:hover{
         text-decoration: none;
         color: $color-white;

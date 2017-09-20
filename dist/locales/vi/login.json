@@ -1,1 +1,9 @@
-{}
+{
+    "login_desc": "Sử dụng CO-WELL ID",
+    "placeholder_user": "Tài khoản",
+    "placeholder_password": "Mật Khẩu",
+    "placeholder_code": "Mã xác thực",
+    "desc": "Code Verify được cung cấp bởi admin công ty. Nếu chưa có vui lòng liên hệ.",
+    "error_input": "Không được bỏ trống trường này",
+    "error_login": "Tài khoản hoặc mật khẩu không đúng"
+}

@@ -4,7 +4,7 @@ import Overlay from '../../components/Overlay'
 import { translate, Interpolate, Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import i18n from '../../services/language/i18n'
-import { toggleMenu } from '../../services/users/actions.js'
+import { toggleMenu, logout } from '../../services/users/actions.js'
 import classnames from 'classnames'
 
 import srcLogo from '../../boilerplate/assets/img/logo.svg'
@@ -16,12 +16,18 @@ import srcAbout from '../../boilerplate/assets/img/icons/24x24/about.svg'
 import srcSetting from '../../boilerplate/assets/img/icons/24x24/setting.svg'
 
 
- @translate(['home'], { wait: true })
+@translate(['home'], { wait: true })
 
 class Home extends React.Component {
 
+    onLogout() {
+        const { logout } = { ...this.props }
+        logout()
+    }
+
     render() {
-        const { t } = { ...this.props }
+        const { t, user, logout } = { ...this.props }
+
         return (
             <div id="wrapper" className="wrapper page-home">
                 <div className="container">
@@ -57,12 +63,25 @@ class Home extends React.Component {
                     </div>
                     <ul className="home-list">
                         <li>
-                            <Link to="/login">
-                                <img src={srcLogin} alt="" width="24" height="24" />
-                                <span>{t('common:login')}</span>
-                            </Link>
+                            {
+                                (user.isAuthenticated) ?
+                                    (
+                                        <Link to="/" onClick={this.onLogout.bind(this)}>
+                                            <img src={srcLogin} alt="" width="24" height="24" />
+                                            <span>{t('common:logout')}</span>
+                                        </Link>
+                                    )
+                                    :
+                                    (
+                                        <Link to="/login">
+                                            <img src={srcLogin} alt="" width="24" height="24" />
+                                            <span>{t('common:login')}</span>
+                                        </Link>
+                                    )
+                            }
+
                         </li>
-                        <li> 
+                        <li>
                             <Link to="/setting">
                                 <img src={srcSetting} alt="" width="24" height="24" />
                                 <span>{t('common:setting')} </span>
@@ -81,4 +100,18 @@ class Home extends React.Component {
     }
 }
 
-export default connect()(Home)
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => {
+            dispatch(logout())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

@@ -1,6 +1,9 @@
 {
-  "auto_guide": "Auto guide",
-  "history": "History",
-  "indoor_location": "Indoor location"
+  "wellcome_desc": "Chào ngày mới!",
+  "people_before": "Người đến công ty trước bạn",
+  "people_after": "Người đến công ty sau bạn",
+  "class_1": "Hôm nay bạn là người thứ",
+  "class_2": "đến công ty",
+  "share_fb": "Chia sẻ",
+  "people_first": "Làm gì có ai"
 }
- 
