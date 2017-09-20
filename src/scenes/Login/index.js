@@ -59,7 +59,8 @@ class Login extends React.Component {
     }
 
     isValid() {
-        const { errors, isValid } = validateInput(this.state);
+        const { t } = { ...this.props }
+        const { errors, isValid } = validateInput(this.state, t);
 
         if (!isValid) {
             this.setState({
