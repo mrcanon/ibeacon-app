@@ -31,18 +31,25 @@ class Login extends React.Component {
             password: '',
             errors: {},
             code_verify: '',
-            errorLogin: ''
+            errorLogin: '',
+            togglePass: false,
+            toggleVerify: false
         }
         this.onChangeInput = this.onChangeInput.bind(this)
         this.onLogin = this.onLogin.bind(this)
     }
 
     toggleShowText(value) {
-        if ($(`#${value}`).attr('type') === 'text') {
-            $(`#${value}`).attr('type', 'password');
+        if (value === "password") {
+            this.setState({
+                togglePass: !this.state.togglePass
+            })
         } else {
-            $(`#${value}`).attr('type', 'text');
+            this.setState({
+                toggleVerify: !this.state.toggleVerify
+            })
         }
+
     }
 
     onChangeInput(e) {
@@ -63,9 +70,9 @@ class Login extends React.Component {
         return isValid;
     }
 
-    onCloseAlert(e){
+    onCloseAlert(e) {
         e.preventDefault()
-        if(!$("#alert-message").hasClass("hidden-alert")){
+        if (!$("#alert-message").hasClass("hidden-alert")) {
             $("#alert-message").addClass("hidden-alert")
         }
     }
@@ -85,11 +92,11 @@ class Login extends React.Component {
                         password: '',
                         errors: {},
                         code_verify: '',
-                        errorLogi: ''
+                        errorLogin: ''
                     })
                     return res
                 })
-                .then((res)=>{
+                .then((res) => {
                     toggleLoading(user.isLoading)
                     toggleLogin(res.data)
                 })
@@ -97,10 +104,10 @@ class Login extends React.Component {
                     if (error.response.status == 404) {
                         this.setState({
                             errors: {},
-                            errorLogin: "User hoặc password không đúng"
+                            errorLogin: "Tài khoản hoặc mật khẩu chưa đúng"
                         })
                         toggleLoading(true)
-                        if($("#alert-message").hasClass("hidden-alert")){
+                        if ($("#alert-message").hasClass("hidden-alert")) {
                             $("#alert-message").removeClass("hidden-alert")
                         }
                     }
@@ -110,7 +117,7 @@ class Login extends React.Component {
 
     render() {
         const { t, toggleMenu, user } = { ...this.props }
-        const { errors, password } = { ...this.state }
+        const { errors, password, togglePass, toggleVerify } = { ...this.state }
 
         return (
             <div id="wrapper" className={classnames('wrapper page-bg-white', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
@@ -131,14 +138,14 @@ class Login extends React.Component {
                             </div>
                             <div className={classnames("form-group", { "has-error": errors.password })}>
                                 <label htmlFor="password" className="form-label"><img src={srcPass} alt="Password icon" /></label>
-                                <input id="password" type="password" name="password" value={password} placeholder={t('login:placeholder_password')} className="form-control" onChange={this.onChangeInput} />
-                                <img src={srcEyeOn} alt="Eye icon" className="form-icon" onClick={() => this.toggleShowText("password")} />
+                                <input id="password" type={togglePass ? "text" : "password"} name="password" value={password} placeholder={t('login:placeholder_password')} className="form-control" onChange={this.onChangeInput} />
+                                <img src={togglePass ? srcEyeOff : srcEyeOn} alt="Eye icon" className="form-icon" onClick={() => this.toggleShowText("password")} />
                                 <span className="help-block">{errors.password}</span>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="code-verify" className="form-label"><img src={srcVerify} alt="Verify icon" /></label>
-                                <input id="verify" type="password" name="code_verify" placeholder={t('login:placeholder_code')} className="form-control" onChange={this.onChangeInput} />
-                                <img src={srcEyeOn} alt="Eye icon" className="form-icon" onClick={() => this.toggleShowText("verify")} />
+                                <input id="verify" type={toggleVerify ? "text" : "password"} name="code_verify" placeholder={t('login:placeholder_code')} className="form-control" onChange={this.onChangeInput} />
+                                <img src={toggleVerify ? srcEyeOff : srcEyeOn} alt="Eye icon" className="form-icon" onClick={() => this.toggleShowText("verify")} />
                                 <span className="help-block"></span>
                             </div>
                             <p className="login-verify">{t('login:desc')}</p>
@@ -147,7 +154,7 @@ class Login extends React.Component {
                     </div>
                 </div>
                 <div className="alert-message hidden-alert" id="alert-message">
-                    <div className="alert-content">Tài khoản hoặc mật khẩu chưa đúng</div>
+                    <div className="alert-content">{this.state.errorLogin}</div>
                     <button onClick={this.onCloseAlert}>Close</button>
                 </div>
                 <Overlay toggleMenu={toggleMenu} isMenu={user.isMenu} />

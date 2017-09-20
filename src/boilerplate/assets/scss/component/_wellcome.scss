@@ -41,6 +41,25 @@
     left: 80px;
 }
 
+.zoomIn {
+    animation: zoomin 1s ease-in infinite;
+}
+
+@-webkit-keyframes zoomin {
+    0% {transform: scale(0.5);}
+    25% {transform: scale(1);}
+    50% {transform: scale(2);}
+    75% {transform: scale(1.5);}
+    100% {transform: scale(1);}
+  }
+  @keyframes zoomin {
+    0% {transform: scale(0.5);}
+    25% {transform: scale(1);}
+    50% {transform: scale(2);}
+    75% {transform: scale(1.5);}
+    100% {transform: scale(1);}
+  }
+
 .wellcome-content{
     padding: 0 10px;
     position: relative;

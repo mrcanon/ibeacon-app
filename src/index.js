@@ -25,20 +25,7 @@ const store = configStore()
 ReactDOM.render(
     <I18nextProvider i18n={i18n}>
         <Provider store={store}>
-            {/* <Router> */}
-                <App />
-                {/* <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/setting" component={Setting} />
-                    <Route path="/about" component={About} />
-                    <Route path="/guide" component={Guide} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/wellcome" component={Wellcome} /> */}
-                    {/* <Route path="/log" component={Log} /> */}
-                    {/* <PrivateRoute authed={store.getState().user.isAuthenticated} path='/wellcome' component={Wellcome} /> */}
-                    {/* <PrivateRoute authed={store.getState().user.isAuthenticated} path='/log' component={Log} /> */}
-                {/* </Switch>
-            </Router> */}
+            <App />
         </Provider>
     </I18nextProvider>
     , document.getElementById('root-app')
