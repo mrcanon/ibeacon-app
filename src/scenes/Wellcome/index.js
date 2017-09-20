@@ -67,10 +67,13 @@ class Wellcome extends React.Component {
                 <div className="container">
                     <div className="wellcome-page">
                         <div className="wellcome-content">
-                            <div className="wellcome-logo"><img src={dataUser.imageUrl} width="100" height="100" /></div>
-                            {
-                                (dataUser.places === '1') ? <div className="wellcom-star"><img src={srcStart} id="wellcom-star" /></div> : ""
-                            }
+                            <div className="wellcome-logo">
+                                <img src={dataUser.imageUrl} width="100" height="100" />
+                                {
+                                    (dataUser.places === '1') ? <div className="wellcom-star"><img src={srcStart} id="wellcom-star" /></div> : ""
+                                }
+                            </div>
+
                             <p className="wellcome-desc">{t('wellcome:wellcome_desc')}</p>
                             <h2 className="wellcome-title">{dataUser.fullName}</h2>
                             <div className="wellcome-container">

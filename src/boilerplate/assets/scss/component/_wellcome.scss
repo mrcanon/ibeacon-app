@@ -28,17 +28,20 @@
         margin: 20px 0 0;
     }
 }
-.wellcome-logo img{
+.wellcome-logo > img{
     border-radius: 50%;
     border: 2px solid $color-white;
 }
 .wellcome-logo{
     position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
 }
 .wellcom-star img{
     position: absolute;
     top: 45px;
-    left: 80px;
+    left: -25px;
 }
 
 
