@@ -5,6 +5,7 @@
   "placeholder_code": "Mã xác nhận",
   "desc": "Mã xác nhận được cung cấp bởi Admin công ty. Nếu chưa có vui lòng liên hệ.",
   "error_input": "Không được bỏ trống trường này!",
-  "error_login": "Tài khoản, mật khẩu hoặc mã xác nhận không chính xác!",
+  "error_login": "Tài khoản hoặc mật khẩu không chính xác!",
+  "error_verify": "Mã xác nhận không chính xác!",
   "close_alert": "Đóng"
 }

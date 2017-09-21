@@ -1,12 +1,6 @@
 .page-login{
-    min-height: 100vh;
-    color: $color-eight;
-}
-
-.panel-login{
-    margin: 0 auto;
-    text-align: center;
-    font-size: 12px;
+    padding-top: $grid-gutter-width / 2;
+    padding-bottom: $grid-gutter-width / 2;
 }
 
 .login-logo{
@@ -14,31 +8,32 @@
 }
 
 .login-heading{
-    margin: 0;
+    margin: 0 0 2px;
     font-size: $base-h2-font-size;
     text-transform: uppercase;
     font-family: $font-lato-black;
     color: $color-primary;
-    margin-bottom: 2px;
 }
 
-form{
-    margin-top: 20px;
-    .form-group{
-        position: relative;
-        margin-bottom: 30px;
-        .help-block{
-            display: block;
-            text-align: left;
-            font-size: 10px;
-            padding: 5px 0;
-            position: absolute
-        }
-        &.has-error{
-            color: #a94442;
-        }
-    }
+.login-logo,
+.login-heading,
+.login-summary,
+.login-verify {
+  text-align: center;
 }
+
+.form-group {
+    position: relative;
+    margin-bottom: 30px;
+  
+    .help-block {
+      display: block;
+      padding-top: 5px;
+    }
+    &.has-error {
+      color: #a94442;
+    }
+  }
 
 .alert-message{
     width: 80%;
@@ -90,10 +85,6 @@ form{
     }
 }
   
-  .panel-login input:focus{
-    outline: none;
-  }
-  
   .form-label{
     position: absolute;
   }
@@ -104,18 +95,16 @@ form{
     float: right;
   }
   
-  input:focus{
-    outline: none;
-  }
-  
   .login-verify{
+    margin-top: 30px;
     font-weight: bold;
   }
   
   .btn-success{
+    display: block;
     font-size: 16px;
     font-weight: bold;
-    margin-top: 37px;
     width: 230px;
     height: 50px;
+    margin: 0 auto;
   }

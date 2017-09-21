@@ -33,10 +33,16 @@ class Login extends React.Component {
 			code_verify: '',
 			errorLogin: '',
 			togglePassword: false,
-			toggleVerify: false
+			toggleVerify: false,
+			device_id: '123456654333455',
+			checkVerify: false
 		}
 		this.onChangeInput = this.onChangeInput.bind(this)
 		this.onLogin = this.onLogin.bind(this)
+	}
+
+	getDeviceId() {
+		// return new device_id on new device install app
 	}
 
 	onChangeInput(e) {
@@ -75,42 +81,74 @@ class Login extends React.Component {
 
 		if (this.isValid()) {
 			const id = parseInt(this.state.user)
+
+			const data_user = {
+				user_name: this.state.user,
+				password: this.state.password,
+				device_id: this.state.device_id
+			}
 			toggleLoading(user.isLoading)
 
-			axios.get(`http://59bd2f925037eb00117b4b2c.mockapi.io/login/${id}`)
+			axios.post(`http://172.16.110.149:8082/api/auth/login`, data_user)
 				.then((res) => {
 					this.setState({
 						user: '',
 						password: '',
 						errors: {},
 						code_verify: '',
+						checkVerify: true,
 					})
 					isAuthenticated: true
-					return res
-				})
-				.then((res) => {
+					console.log(res)
+					
 					toggleLoading(user.isLoading)
 					toggleLogin(res.data)
 				})
 				.catch((error) => {
-					if (error.response.status == 404) {
+					if (error.response.status == 422) {
+						toggleLoading(true)
+						if ($("#alert-message").hasClass("hidden-alert")) {
+							$("#alert-message").removeClass("hidden-alert")
+						}
+						$(".help-error").removeClass("help-block")
+					}
+					if (error.response.status == 401) {
 						this.setState({
-							errors: {},
+							checkVerify: true,
 						})
 						toggleLoading(true)
 						if ($("#alert-message").hasClass("hidden-alert")) {
 							$("#alert-message").removeClass("hidden-alert")
 						}
-						removeClass("help-block")
 					}
 				})
 		}
 	}
 
-	render() {
+	toggleDeviceId() {
 		const { t, toggleMenu, user } = { ...this.props }
 		const { errors, password, togglePassword, toggleVerify } = { ...this.state }
 
+		if (this.state.checkVerify) {
+			// this.setState({checkVerify: false})
+			return (
+				<div className={classnames("form-group", "form-group-verify", { "has-error": errors.code_verify })}>
+					<label htmlFor="code-verify" className="form-label"><img src={srcVerify} alt="Verify icon" /></label>
+					<input id="verify" type={toggleVerify ? "text" : "password"} name="code_verify" placeholder={t('login:placeholder_code')} className="form-control" onChange={this.onChangeInput} />
+					<img src={toggleVerify ? srcEyeOff : srcEyeOn} className="form-icon" id='eye-verify' onClick={() => this.toggleShowText("verify")} />
+					<span className="help-block">{errors.code_verify}</span>
+					<p className="login-verify">{t('login:desc')}</p>
+				</div>
+			)
+		} else {
+			return ""
+		}
+	}
+
+	render() {
+		const { t, toggleMenu, user } = { ...this.props }
+		const { errors, password, togglePassword, toggleVerify, checkVerify } = { ...this.state }
+		console.log("huync6786-123456-1234544334")
 		return (
 			<div id="wrapper" className={classnames('wrapper page-bg-white', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
 				{
@@ -125,25 +163,25 @@ class Login extends React.Component {
 						<form action="">
 							<div className={classnames("form-group", { "has-error": errors.user })}>
 								<label htmlFor="user" className="form-label"><img src={srcUser} alt="User icon" /></label>
-								<input id="user" type="text" name="user" placeholder={t('login:placeholder_user')} value={this.state.user} className="form-control" onChange={this.onChangeInput} />
-								<span className="help-block">{errors.user}</span>
+								<input id="user" type="text" name="user" placeholder={t('login:placeholder_user')} value={this.state.user} className="form-control" onChange={this.onChangeInput} disabled={(checkVerify) ? true : false} />
+								<span className="help-block help-error" >{errors.user}</span>
 							</div>
 							<div className={classnames("form-group", { "has-error": errors.password })}>
 								<label htmlFor="password" className="form-label"><img src={srcPass} alt="Password icon" /></label>
-								<input id="password" type={togglePassword ? "text" : "password"} name="password" value={password} placeholder={t('login:placeholder_password')} className="form-control" onChange={this.onChangeInput} />
+								<input id="password" type={togglePassword ? "text" : "password"} name="password" value={password} placeholder={t('login:placeholder_password')} className="form-control" onChange={this.onChangeInput} disabled={(checkVerify) ? true : false} />
 								<img src={togglePassword ? srcEyeOff : srcEyeOn} className="form-icon" id='eye-password' onClick={() => this.toggleShowText("password")} />
-								<span className="help-block">{errors.password}</span>
+								<span className="help-block help-error" >{errors.password}</span>
 							</div>
-							<div className={classnames("form-group", { "has-error": errors.code_verify })}>
-								<label htmlFor="code-verify" className="form-label"><img src={srcVerify} alt="Verify icon" /></label>
-								<input id="verify" type={toggleVerify ? "text" : "password"} name="code_verify" placeholder={t('login:placeholder_code')} className="form-control" onChange={this.onChangeInput} />
-								<img src={toggleVerify ? srcEyeOff : srcEyeOn} className="form-icon" id='eye-verify' onClick={() => this.toggleShowText("verify")} />
-								<span className="help-block">{errors.code_verify}</span>
-							</div>
-							<p className="login-verify">{t('login:desc')}</p>
+
+							{this.toggleDeviceId()}
+
 							<button type="submit" className="btn btn-success" onClick={this.onLogin} >{t('common:login')}</button>
 							<div className="alert-message hidden-alert" id="alert-message">
-								<div className="alert-content">{t('login:error_login')}</div>
+								{
+									(checkVerify)
+										? <div className="alert-content">{t('login:error_verify')}</div>
+										: <div className="alert-content">{t('login:error_login')}</div>
+								}
 								<button onClick={this.onCloseAlert}>{t('login:close_alert')}</button>
 							</div>
 						</form>

@@ -14,10 +14,6 @@ export default function validateInput(data, t) {
         errors.password = t('login:error_input');
     }
 
-    if (Validator.isEmpty(data.code_verify)) {
-        errors.code_verify = t('login:error_input');
-    }
-
     return {
         errors,
         isValid: _.isEmpty(errors)
