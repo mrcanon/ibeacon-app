@@ -33,7 +33,10 @@ class Guide extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://59bd2f925037eb00117b4b2c.mockapi.io/guide/1')
+        let uuid = {
+            device_id: "1111"
+        }
+        axios.post('http://172.16.110.149:8082/api/department', uuid)
             .then((res) => {
                 this.setState({
                     dataGuide: res.data
