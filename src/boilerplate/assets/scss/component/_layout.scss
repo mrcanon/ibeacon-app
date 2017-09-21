@@ -11,7 +11,7 @@
   visibility: hidden;
   opacity: 0;
   background: rgba($color-black, .5);
-  transition: opacity .5;
+  transition: opacity .5s;
   z-index: 90;
 
   .is-show &{

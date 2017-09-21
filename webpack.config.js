@@ -31,6 +31,9 @@ const cssDev = [
     options: {
       sourceMap: true
     }
+  },
+  {
+    loader: 'resolve-url-loader'
   }
 ];
 
@@ -54,16 +57,29 @@ var config = {
   },
 
   devServer: {
-    contentBase: path.join(__dirname, "dist"),
-    compress: true,
     hot: true,
-    inline: true,
-    //port: 8080,
-    //stats: "errors-only",
+    contentBase: path.resolve(__dirname, "dist"),
+    host: "0.0.0.0",
+    publicPath: `/`,
+    historyApiFallback: true,
+    disableHostCheck: true,
     open: true,
-    openPage: '',
-    //host: '172.16.110.117'
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
   },
+
+  // devServer: {
+  //   contentBase: path.join(__dirname, "dist"),
+  //   compress: true,
+  //   hot: true,
+  //   inline: true,
+  //   //port: 8080,
+  //   //stats: "errors-only",
+  //   open: true,
+  //   openPage: '',
+  //   //host: '172.16.110.117'
+  // },
 
   module: {
     rules: [{

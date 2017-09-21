@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Switch, NavLink } from 'react-router-dom'
+import TransitionGroup from "react-transition-group/TransitionGroup";
 
 import { Provider } from 'react-redux'
 import configStore from './store'
@@ -10,6 +11,7 @@ import i18n from './services/language/i18n'
 
 import './boilerplate/assets/scss/style.scss'
 
+import AnimatedSwitch from './components/AnimatedSwitch'
 import Wellcome from './scenes/Wellcome'
 import Home from './scenes/Home'
 import Setting from './scenes/Setting'
@@ -24,17 +26,23 @@ ReactDOM.render(
     <I18nextProvider i18n={i18n}>
         <Provider store={store}>
             <Router>
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/wellcome" component={Wellcome} />
-                    <Route path="/setting" component={Setting} />
-                    <Route path="/about" component={About} />
-                    <Route path="/guide" component={Guide} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/log" component={Log} />
-                </Switch>
+                <Route
+                    render={({ location }) => (
+                        <TransitionGroup component="main">
+                            <AnimatedSwitch key={location.key} location={location} >
+                                <Route exact path="/" component={Home} />
+                                <Route path="/wellcome" component={Wellcome} />
+                                <Route path="/setting" component={Setting} />
+                                <Route path="/about" component={About} />
+                                <Route path="/guide" component={Guide} />
+                                <Route path="/login" component={Login} />
+                                <Route path="/log" component={Log} />
+                            </AnimatedSwitch>
+                        </TransitionGroup>
+                    )}
+                />
             </Router>
         </Provider>
     </I18nextProvider>
-    , document.getElementById('root-app')
+    , document.getElementById('root')
 )
