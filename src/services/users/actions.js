@@ -14,10 +14,11 @@ export function changeLng(lng) {
   }
 }
 
-export function toggleLogin(data) {
+export function toggleLogin(data, token) {
   return {
     type: TOGGLE_LOGIN,
-    data
+    data,
+    token
   }
 }
 

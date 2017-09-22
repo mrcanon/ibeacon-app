@@ -21,6 +21,8 @@ import srcPass from '../../boilerplate/assets/img/icons/24x24/pass.svg'
 import srcEyeOn from '../../boilerplate/assets/img/icons/24x24/eye-on.svg'
 import srcEyeOff from '../../boilerplate/assets/img/icons/24x24/eye-off.svg'
 
+import apiLoginPath from "../../services/api/api-login.json"
+
 @translate(['login'], { wait: true })
 
 class Login extends React.Component {
@@ -34,15 +36,15 @@ class Login extends React.Component {
 			errorLogin: '',
 			togglePassword: false,
 			toggleVerify: false,
-			device_id: '123456654333455',
-			checkVerify: false
+			device_id: '12345665433345500',
+			checkVerify: false,
 		}
 		this.onChangeInput = this.onChangeInput.bind(this)
 		this.onLogin = this.onLogin.bind(this)
 	}
 
 	getDeviceId() {
-		// return new device_id on new device install app
+		// return new device_id on new device then install app iBeacon
 	}
 
 	onChangeInput(e) {
@@ -85,24 +87,25 @@ class Login extends React.Component {
 			const data_user = {
 				user_name: this.state.user,
 				password: this.state.password,
-				device_id: this.state.device_id
+				device_id: this.state.device_id,
+				verify_code: this.state.code_verify
 			}
 			toggleLoading(user.isLoading)
 
-			axios.post(`http://172.16.110.149:8082/api/auth/login`, data_user)
+			let apiLogin = apiLoginPath.linkApi
+			axios.post(apiLogin, data_user)
 				.then((res) => {
 					this.setState({
 						user: '',
 						password: '',
 						errors: {},
 						code_verify: '',
-						checkVerify: true,
+						checkVerify: true
 					})
 					isAuthenticated: true
-					console.log(res)
 					
 					toggleLoading(user.isLoading)
-					toggleLogin(res.data)
+					toggleLogin(res.data.data, res.data.token)
 				})
 				.catch((error) => {
 					if (error.response.status == 422) {
@@ -110,7 +113,7 @@ class Login extends React.Component {
 						if ($("#alert-message").hasClass("hidden-alert")) {
 							$("#alert-message").removeClass("hidden-alert")
 						}
-						$(".help-error").removeClass("help-block")
+						$(".help-error").removeClass("help-block")	
 					}
 					if (error.response.status == 401) {
 						this.setState({
@@ -130,7 +133,6 @@ class Login extends React.Component {
 		const { errors, password, togglePassword, toggleVerify } = { ...this.state }
 
 		if (this.state.checkVerify) {
-			// this.setState({checkVerify: false})
 			return (
 				<div className={classnames("form-group", "form-group-verify", { "has-error": errors.code_verify })}>
 					<label htmlFor="code-verify" className="form-label"><img src={srcVerify} alt="Verify icon" /></label>
@@ -141,18 +143,18 @@ class Login extends React.Component {
 				</div>
 			)
 		} else {
-			return ""
+			return ''
 		}
 	}
 
 	render() {
 		const { t, toggleMenu, user } = { ...this.props }
 		const { errors, password, togglePassword, toggleVerify, checkVerify } = { ...this.state }
-		console.log("huync6786-123456-1234544334")
+
 		return (
 			<div id="wrapper" className={classnames('wrapper page-bg-white', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
 				{
-					(user.isAuthenticated) ? <Redirect to={{ pathname: '/wellcome' }} /> : ""
+					(user.isAuthenticated) ? <Redirect to={{ pathname: '/wellcome' }} /> : ''
 				}
 				<Header srcHome={srcHome} srcMenu={srcMenu} toggleMenu={toggleMenu} />
 				<div className="container">
@@ -160,7 +162,7 @@ class Login extends React.Component {
 						<h1 className="login-logo"><img src={srcLogin} alt="Login logo" width="64" height="64" /></h1>
 						<h2 className="login-heading">{t('common:login')}</h2>
 						<p className="login-summary">{t('login:login_desc')}</p>
-						<form action="">
+						<form action=''>
 							<div className={classnames("form-group", { "has-error": errors.user })}>
 								<label htmlFor="user" className="form-label"><img src={srcUser} alt="User icon" /></label>
 								<input id="user" type="text" name="user" placeholder={t('login:placeholder_user')} value={this.state.user} className="form-control" onChange={this.onChangeInput} disabled={(checkVerify) ? true : false} />
@@ -208,8 +210,8 @@ const mapDispatchToProps = (dispatch) => {
 		toggleLoading: status => {
 			dispatch(toggleLoading(status))
 		},
-		toggleLogin: (data) => {
-			dispatch(toggleLogin(data))
+		toggleLogin: (data, token) => {
+			dispatch(toggleLogin(data, token))
 		}
 	}
 }

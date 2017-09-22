@@ -1,6 +1,6 @@
 import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING, TOGGLE_LOGIN, LOGOUT } from './actionTypes'
 
-function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated: false, dataUser: {} }, action) {
+function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated: false, dataUser: {}, token: '' }, action) {
     switch (action.type) {
         case TOGGLE_MENU:
             return {
@@ -26,13 +26,15 @@ function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated:
             return {
                 ...state,
                 isAuthenticated: !state.isAuthenticated,
-                dataUser: action.data
+                dataUser: action.data,
+                token: action.token
             }
         case LOGOUT:
             return {
                 ...state,
                 isAuthenticated: !state.isAuthenticated,
-                dataUser: {}
+                dataUser: {},
+                token: ''
             }
         default:
             return state
