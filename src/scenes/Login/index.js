@@ -34,7 +34,7 @@ class Login extends React.Component {
             errorLogin: '',
             togglePass: false,
             toggleVerify: false,
-            device_id: '160256FF-81D5-4C2F-A6E4-551D6ACFFBAE',
+            device_id: '160256FF-81D5-4C2F-A6E4-551D6ACFFBAE-0S3',
             checkVerify: false
         }
         this.onChangeInput = this.onChangeInput.bind(this)
@@ -91,7 +91,7 @@ class Login extends React.Component {
                 user_name: this.state.user,
                 password: this.state.password,
                 device_id: this.state.device_id,
-                code_verify: this.state.code_verify
+                verify_code: this.state.code_verify
             }
 
             axios.post(`http://172.16.110.149:8082/api/auth/login`, dataUser)
