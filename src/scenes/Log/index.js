@@ -25,7 +25,9 @@ class Log extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            logTime: []
+            logTime: [],
+            workDate: "",
+            weekday: ""
         }
     }
 
@@ -52,24 +54,45 @@ class Log extends React.Component {
 
     componentDidMount() {
         const { user } = { ...this.props }
-        
-        axios.get("http://59bd2f925037eb00117b4b2c.mockapi.io/log")
+
+        let infoUser = {
+            user_name: user.dataUser.user_name,
+            token: user.tokenUser
+        }
+        axios.post("http://172.16.110.149:8082/api/history", infoUser)
             .then((res) => {
                 this.setState({
-                    logTime: res.data
+                    logTime: res.data,
                 })
 
                 this.carousel()
             })
             .then(() => {
                 const { toggleLoading, user } = { ...this.props }
+                this.setState({
+                    workDate: (this.state.logTime[0].work_date) ? this.state.logTime[0].work_date : ""
+                })
+                
+                let d = new Date(this.state.workDate);
+                let weekday = new Array(7);
+                weekday[0] =  "Sunday";
+                weekday[1] = "Monday";
+                weekday[2] = "Tuesday";
+                weekday[3] = "Wednesday";
+                weekday[4] = "Thursday";
+                weekday[5] = "Friday";
+                weekday[6] = "Saturday";
+                
+                this.setState({
+                    weekday: weekday[d.getDay()]
+                })
                 toggleLoading(user.isLoading)
             })
     }
 
     render() {
         const { t, toggleMenu, user } = { ...this.props }
-        const { logTime } = { ...this.state }
+        const { logTime, workDate, weekday } = { ...this.state }
 
         return (
             <div className={classnames('wrapper page-history', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
@@ -82,20 +105,16 @@ class Log extends React.Component {
                         <p className="history-desc">{t('home:history_desc')}</p>
                         <div className="history-container">
                             <div className="history-checkin" id="history-checkin">
-                                {
-                                    logTime.map((val) =>
-                                        <div className="history-list" key={val.id}>
-                                            <LogHeader date={val.day} time={val.date} />
-                                            <ul className="history-content">
-                                                {
-                                                    val.logTime.map((value) =>
-                                                        <LogItem time={value.time} location={value.location} key={val.id + value.time} />
-                                                    )
-                                                }
-                                            </ul>
-                                        </div>
-                                    )
-                                }
+                                <div className="history-list">
+                                    <LogHeader date="ToDay" time={workDate} />
+                                    <ul className="history-content">
+                                        {
+                                            logTime.map((value) =>
+                                                <LogItem time={value.checkout} location={value.department} key={value.checkout + Math.random()} />
+                                            )
+                                        }
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

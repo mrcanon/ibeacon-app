@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import i18n from '../../services/language/i18n'
 import { toggleMenu, toggleLoading } from '../../services/users/actions.js'
 import classnames from 'classnames'
+import axios from 'axios'
 
 import srcHome from '../../boilerplate/assets/img/icons/24x24/home-white.svg'
 import srcMenu from '../../boilerplate/assets/img/icons/24x24/menu-white.svg'
@@ -19,6 +20,9 @@ import srcFb from '../../boilerplate/assets/img/fb-logo.svg'
 class Wellcome extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            dataTimeSheet: {}
+        }
         this.renderInfo = this.renderInfo.bind(this)
     }
 
@@ -31,9 +35,23 @@ class Wellcome extends React.Component {
         const { toggleLoading, user } = { ...this.props }
         toggleLoading(true)
 
-        if (!$("#wellcom-star").hasClass("zoomIn")) {
-            $("#wellcom-star").addClass("zoomIn")
+        let dataTimeSheet = {
+            user_name: user.dataUser.user_name,
+            device_id: 1111,
+            token: user.tokenUser
         }
+
+        axios.post('http://172.16.110.149:8082/api/timesheet', dataTimeSheet)
+            .then((res) => {
+                this.setState({
+                    dataTimeSheet: res.data
+                })
+            })
+            .then(() => {
+                if (!$("#wellcom-star").hasClass("zoomIn")) {
+                    $("#wellcom-star").addClass("zoomIn")
+                }
+            })
     }
 
     renderInfo(status) {
@@ -59,6 +77,7 @@ class Wellcome extends React.Component {
 
     render() {
         const { t, toggleMenu, user } = { ...this.props }
+        const { dataTimeSheet } = { ...this.state }
         let dataUser = user.dataUser;
 
         return (
@@ -68,14 +87,14 @@ class Wellcome extends React.Component {
                     <div className="wellcome-page">
                         <div className="wellcome-content">
                             <div className="wellcome-logo">
-                                <img src={dataUser.imageUrl} width="100" height="100" />
+                                <img src={`http://172.16.110.149:8082/img/avatar/${user.dataUser.avatar}`} width="100" height="100" />
                                 {
-                                    (dataUser.places === '1') ? <div className="wellcom-star"><img src={srcStart} id="wellcom-star" /></div> : ""
+                                    (dataTimeSheet.count == 1) ? <div className="wellcom-star"><img src={srcStart} id="wellcom-star" /></div> : ""
                                 }
                             </div>
 
                             <p className="wellcome-desc">{t('wellcome:wellcome_desc')}</p>
-                            <h2 className="wellcome-title">{dataUser.fullName}</h2>
+                            <h2 className="wellcome-title">{dataUser.fullname}</h2>
                             <div className="wellcome-container">
                                 <ul className="wellcome-content">
                                     {this.renderInfo(dataUser.places === '1')}
@@ -85,7 +104,7 @@ class Wellcome extends React.Component {
                                     </li>
                                     <li className="info-content">
                                         <div className="info-title">{t('wellcome:class_1')}</div>
-                                        <div className="info-desc">{dataUser.places} </div>
+                                        <div className="info-desc">{dataTimeSheet.count} </div>
                                         <div className="info-title">{t('wellcome:class_2')}</div>
                                     </li>
                                 </ul>

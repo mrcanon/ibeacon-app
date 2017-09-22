@@ -34,7 +34,7 @@ class Login extends React.Component {
             errorLogin: '',
             togglePass: false,
             toggleVerify: false,
-            device_id: '123456654333455',
+            device_id: '160256FF-81D5-4C2F-A6E4-551D6ACFFBAE',
             checkVerify: false
         }
         this.onChangeInput = this.onChangeInput.bind(this)
@@ -104,7 +104,7 @@ class Login extends React.Component {
                         errorLogin: ''
                     })
                     toggleLoading(true)
-                    toggleLogin(res.data.data)
+                    toggleLogin(res.data.data, res.data.token)
                 })
                 .catch((error) => {
                     if (error.response.status == 422) {
@@ -210,8 +210,8 @@ const mapDispatchToProps = (dispatch) => {
         toggleLoading: status => {
             dispatch(toggleLoading(status))
         },
-        toggleLogin: (data) => {
-            dispatch(toggleLogin(data))
+        toggleLogin: (data, token) => {
+            dispatch(toggleLogin(data, token))
         }
     }
 }
