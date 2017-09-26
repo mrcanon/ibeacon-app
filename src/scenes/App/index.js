@@ -12,6 +12,18 @@ import Login from '../Login'
 import PrivateRoute from '../../components/PrivateRoute'
 
 class App extends Component {
+  componentDidMount() {
+    if (!localStorage.getItem("isAuthenticated")) {
+      localStorage.setItem("isAuthenticated", false)
+    }
+    if (!localStorage.getItem("dataUser")) {
+      localStorage.setItem("dataUser", {})
+    }
+    if (!localStorage.getItem("dataToken")) {
+      localStorage.setItem("dataToken", "")
+    }
+  }
+
   render() {
     const { user } = { ...this.props }
     return (

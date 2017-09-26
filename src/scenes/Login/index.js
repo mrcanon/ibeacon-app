@@ -83,7 +83,7 @@ class Login extends React.Component {
 
 		if (this.isValid()) {
 			const id = parseInt(this.state.user)
-
+			
 			const data_user = {
 				user_name: this.state.user,
 				password: this.state.password,
@@ -95,6 +95,10 @@ class Login extends React.Component {
 			let apiLogin = apiLoginPath.linkApi
 			axios.post(apiLogin, data_user)
 				.then((res) => {
+					localStorage.setItem("isAuthenticated", true)
+					localStorage.setItem("dataUser", JSON.stringify(res.data.data))
+					localStorage.setItem("tokenUser", res.data.token)
+					
 					this.setState({
 						user: '',
 						password: '',
@@ -103,7 +107,7 @@ class Login extends React.Component {
 						checkVerify: true
 					})
 					isAuthenticated: true
-					
+
 					toggleLoading(user.isLoading)
 					toggleLogin(res.data.data, res.data.token)
 				})
@@ -113,7 +117,7 @@ class Login extends React.Component {
 						if ($("#alert-message").hasClass("hidden-alert")) {
 							$("#alert-message").removeClass("hidden-alert")
 						}
-						$(".help-error").removeClass("help-block")	
+						$(".help-error").removeClass("help-block")
 					}
 					if (error.response.status == 401) {
 						this.setState({

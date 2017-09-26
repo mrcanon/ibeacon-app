@@ -1,6 +1,10 @@
 import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING, TOGGLE_LOGIN, LOGOUT } from './actionTypes'
 
-function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated: false, dataUser: {}, token: '' }, action) {
+let isAuthenticated =  (localStorage.getItem("isAuthenticated") === "true") ? true : false
+let dataUser = (localStorage.getItem("dataUser") === "{}") ? {} : localStorage.getItem("dataUser")
+let tokenUser = (localStorage.getItem("tokenUser") === "") ? "" : localStorage.getItem("tokenUser")
+
+function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated: isAuthenticated, dataUser: dataUser, token: tokenUser }, action) {
     switch (action.type) {
         case TOGGLE_MENU:
             return {
