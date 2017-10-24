@@ -34,7 +34,7 @@ class Login extends React.Component {
             errorLogin: '',
             togglePass: false,
             toggleVerify: false,
-            device_id: '160256FF-81D5-4C2F-A6E4-551D6ACFFBAE-0S3',
+            device_id: '160256FF-81D5-4C2F-A6E4-551D6ACFFBAE',
             checkVerify: false
         }
         this.onChangeInput = this.onChangeInput.bind(this)
@@ -53,6 +53,22 @@ class Login extends React.Component {
         }
 
     }
+
+
+    // getDeviceUUID() {
+    //     document.addEventListener("deviceready", onDeviceReady, false);
+    //     function onDeviceReady() {
+    //         let deviceUUID = device.uuid
+    //         this.setState({
+    //             device_id: deviceUUID
+    //         })
+    //     }
+    //     onDeviceReady()
+    // }
+
+    // componentWillMount() {
+    //     this.getDeviceUUID()
+    // }
 
     onChangeInput(e) {
         this.setState({
@@ -105,6 +121,9 @@ class Login extends React.Component {
                     })
                     toggleLoading(true)
                     toggleLogin(res.data.data, res.data.token)
+                    // localStorage.setItem("isAuthenticated", true);
+                    // localStorage.setItem("dataUser", JSON.stringify(res.data.data));
+                    // localStorage.setItem("tokenUser", res.data.token);
                 })
                 .catch((error) => {
                     if (error.response.status == 422) {
@@ -156,11 +175,13 @@ class Login extends React.Component {
     render() {
         const { t, toggleMenu, user } = { ...this.props }
         const { errors, password, togglePass, toggleVerify } = { ...this.state }
+        let isAuthenticated = (localStorage.getItem("isAuthenticated") === "true") ? true : false
 
         return (
             <div id="wrapper" className={classnames('wrapper page-bg-white', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
+                <div id="demo-beacon">{user.distance}</div>
                 {
-                    (user.isAuthenticated) ? <Redirect to={{ pathname: '/wellcome' }} /> : ""
+                    (isAuthenticated) ? <Redirect to={{ pathname: '/wellcome' }} /> : ""
                 }
                 <Header srcHome={srcHome} srcMenu={srcMenu} toggleMenu={toggleMenu} />
                 <div className="container">

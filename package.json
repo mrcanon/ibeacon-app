@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack -p",
+    "build": "npm run clean && cross-env NODE_ENV=development webpack -p",
     "clean": "rimraf ./dist/*"
   },
   "author": "",
@@ -56,6 +56,7 @@
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
+    "cordova": "^7.0.1",
     "i18next": "^8.1.0",
     "i18next-browser-languagedetector": "^1.0.1",
     "i18next-localstorage-cache": "^1.0.0",

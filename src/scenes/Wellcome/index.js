@@ -33,12 +33,15 @@ class Wellcome extends React.Component {
 
     componentDidMount() {
         const { toggleLoading, user } = { ...this.props }
+        let dataUser = (localStorage.getItem("dataUser") === "{}") ? {} : JSON.parse(localStorage.getItem("dataUser"))
+        let tokenUser = (localStorage.getItem("tokenUser") === "") ? '' : localStorage.getItem("tokenUser")
+
         toggleLoading(true)
 
         let dataTimeSheet = {
-            user_name: user.dataUser.user_name,
+            user_name: dataUser.user_name,
             device_id: 1111,
-            token: user.tokenUser
+            token: tokenUser
         }
 
         axios.post('http://172.16.110.149:8082/api/timesheet', dataTimeSheet)
@@ -56,7 +59,7 @@ class Wellcome extends React.Component {
 
     renderInfo(status) {
         const { t, user } = { ...this.props }
-        let dataUser = user.dataUser;
+        let dataUser = (localStorage.getItem("dataUser") === "{}") ? {} : JSON.parse(localStorage.getItem("dataUser"))
 
         if (status) {
             return (
@@ -69,7 +72,7 @@ class Wellcome extends React.Component {
             return (
                 <li className="info-content">
                     <div className="info-title">{t('wellcome:people_before')}</div>
-                    <div className="info-desc">{dataUser.pLast}</div>
+                    {<div className="info-desc">{dataUser.pLast}</div>}
                 </li>
             )
         }
@@ -78,7 +81,7 @@ class Wellcome extends React.Component {
     render() {
         const { t, toggleMenu, user } = { ...this.props }
         const { dataTimeSheet } = { ...this.state }
-        let dataUser = user.dataUser;
+        let dataUser = (localStorage.getItem("dataUser") === "{}") ? {} : JSON.parse(localStorage.getItem("dataUser"))
 
         return (
             <div id="wrapper" className={classnames('wrapper page-wellcome', { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
@@ -87,7 +90,7 @@ class Wellcome extends React.Component {
                     <div className="wellcome-page">
                         <div className="wellcome-content">
                             <div className="wellcome-logo">
-                                <img src={`http://172.16.110.149:8082/img/avatar/${user.dataUser.avatar}`} width="100" height="100" />
+                                <img src={`http://172.16.110.149:8082/img/avatar/${dataUser.avatar}`} width="100" height="100" />
                                 {
                                     (dataTimeSheet.count == 1) ? <div className="wellcom-star"><img src={srcStart} id="wellcom-star" /></div> : ""
                                 }

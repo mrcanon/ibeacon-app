@@ -54,11 +54,15 @@ class Log extends React.Component {
 
     componentDidMount() {
         const { user } = { ...this.props }
+        let dataUser = (localStorage.getItem("dataUser") === "{}") ? {} : JSON.parse(localStorage.getItem("dataUser"))
+        let tokenUser = (localStorage.getItem("tokenUser") === "") ? '' : localStorage.getItem("tokenUser")
 
         let infoUser = {
-            user_name: user.dataUser.user_name,
-            token: user.tokenUser
+            user_name: dataUser.user_name,
+            token: tokenUser
         }
+
+        console.log(infoUser);
         axios.post("http://172.16.110.149:8082/api/history", infoUser)
             .then((res) => {
                 this.setState({

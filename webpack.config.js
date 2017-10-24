@@ -14,7 +14,7 @@ const glob = require('glob');
 const PurifyCSSPlugin = require('purifycss-webpack');
 
 // Check mode development
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'development';
 
 const cssDev = [
   {
@@ -51,10 +51,13 @@ var config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: `${pathOutputJs}[name].bundle.js`
+    // path: path.resolve(__dirname, 'dist02'),
+    // filename: `${pathOutputJs}[name].bundle.js`
   },
 
   devServer: {
     contentBase: path.join(__dirname, "dist"),
+    // contentBase: path.join(__dirname, "dist02"),
     compress: true,
     hot: true,
     inline: true,

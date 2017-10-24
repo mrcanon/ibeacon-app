@@ -15,14 +15,16 @@ class Navigation extends React.Component {
 
     render() {
         const { t, user, hideMenu } = { ...this.props }
+        let dataUser = (localStorage.getItem("dataUser") === "{}") ? {} : JSON.parse(localStorage.getItem("dataUser"))
+
         return (
             <div className="splitter">
                 <Link to="/wellcome" onClick={hideMenu}>
                     <div className="splitter-profile">
                         <div className="splitter-media">
-                            <img src={`http://172.16.110.149:8082/img/avatar/${user.dataUser.avatar}`} width="100" height="100" />
+                            <img src={`http://172.16.110.149:8082/img/avatar/${dataUser.avatar}`} width="100" height="100" />
                         </div>
-                        <div className="splitter-name">{user.dataUser.fullname}</div>
+                        <div className="splitter-name">{dataUser.fullname}</div>
                     </div>
                 </Link>
                 <ul className="splitter-menu">

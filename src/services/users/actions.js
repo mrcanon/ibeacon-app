@@ -1,4 +1,4 @@
-import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING, TOGGLE_LOGIN, LOGOUT } from './actionTypes'
+import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING, TOGGLE_LOGIN, LOGOUT,  DISTANCE_IBEACON} from './actionTypes'
 let timer = null
 export function toggleMenu(status) {
   return {
@@ -11,6 +11,13 @@ export function changeLng(lng) {
   return {
     type: CHANGE_LANGUAGE,
     lng
+  }
+}
+
+export function distanceIbeacon(distance){
+  return{
+    type: DISTANCE_IBEACON,
+    distance
   }
 }
 

@@ -4,7 +4,7 @@ import Overlay from '../../components/Overlay'
 import { translate, Interpolate, Trans } from 'react-i18next'
 import { connect } from 'react-redux'
 import i18n from '../../services/language/i18n'
-import { toggleMenu, logout } from '../../services/users/actions.js'
+import { toggleMenu, logout, distanceIbeacon } from '../../services/users/actions.js'
 import classnames from 'classnames'
 
 import srcLogo from '../../boilerplate/assets/img/logo.svg'
@@ -19,7 +19,7 @@ import srcSetting from '../../boilerplate/assets/img/icons/24x24/setting.svg'
 @translate(['home'], { wait: true })
 
 class Home extends React.Component {
-
+    
     onLogout() {
         const { logout } = { ...this.props }
         logout()
@@ -27,6 +27,7 @@ class Home extends React.Component {
 
     render() {
         const { t, user, logout } = { ...this.props }
+        let isAuthenticated = (localStorage.getItem("isAuthenticated") === "true") ? true : false
 
         return (
             <div id="wrapper" className="wrapper page-home">
@@ -64,7 +65,7 @@ class Home extends React.Component {
                     <ul className="home-list">
                         <li>
                             {
-                                (user.isAuthenticated) ?
+                                (isAuthenticated) ?
                                     (
                                         <Link to="/" onClick={this.onLogout.bind(this)}>
                                             <img src={srcLogin} alt="" width="24" height="24" />
@@ -110,6 +111,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         logout: () => {
             dispatch(logout())
+        },
+        distanceIbeacon: (distance) => {
+            dispatch(distanceIbeacon(distance))
         }
     }
 }

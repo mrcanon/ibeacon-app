@@ -54,6 +54,7 @@ class Guide extends React.Component {
 
         return (
             <div id="wrapper" className={classnames("wrapper page-bg-white", { 'is-show': user.isMenu, 'is-loading': user.isLoading })}>
+
                 <Header srcHome={srcHome} srcMenu={srcMenu} toggleMenu={toggleMenu} />
                 <div className="container">
                     <div className="guide-page section-page">

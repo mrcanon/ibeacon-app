@@ -1,6 +1,6 @@
-import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING, TOGGLE_LOGIN, LOGOUT } from './actionTypes'
+import { TOGGLE_MENU, HIDE_MENU, CHANGE_LANGUAGE, TOGGLE_LOADING, TOGGLE_LOGIN, LOGOUT, DISTANCE_IBEACON } from './actionTypes'
 
-function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated: false, dataUser: {}, tokenUser: '' }, action) {
+function reducerUser(state = { isMenu: false, isLoading: false, distance: 0 }, action) {
     switch (action.type) {
         case TOGGLE_MENU:
             return {
@@ -23,18 +23,23 @@ function reducerUser(state = { isMenu: false, isLoading: false, isAuthenticated:
                 isLoading: !action.status
             }
         case TOGGLE_LOGIN:
+            localStorage.setItem("isAuthenticated", true)
+            localStorage.setItem("dataUser", JSON.stringify(action.data))
+            localStorage.setItem("tokenUser", action.token)
+
             return {
-                ...state,
-                isAuthenticated: !state.isAuthenticated,
-                dataUser: action.data,
-                tokenUser: action.token
+                ...state
             }
         case LOGOUT:
+            localStorage.setItem("isAuthenticated", false);
+
+            return {
+                ...state
+            }
+        case DISTANCE_IBEACON:
             return {
                 ...state,
-                isAuthenticated: !state.isAuthenticated,
-                dataUser: {},
-                tokenUser: ''
+                distance: action.distance
             }
         default:
             return state
